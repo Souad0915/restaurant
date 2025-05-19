@@ -1,1 +1,1 @@
-web: gunicorn montutoreT.wsgi
+web : gunicorn montutoreT.wsgi
