@@ -93,15 +93,12 @@ WSGI_APPLICATION = 'montutoreT.wsgi.application'
 # Configuration de la base de données
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'restaurant',  # Nom de la base de données
-        'USER': 'root',        # Utilisateur MySQL
-        'PASSWORD': '', # Mot de passe MySQL
-        'HOST': 'localhost',   # Hôte de la base de données
-        'PORT': '3306',        # Port par défaut pour MySQL
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
-        },
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'restaurant_db',       # Nom de la DB Render
+        'USER': os.getenv('DB_USER'),  # Utilisateur Render
+        'PASSWORD': os.getenv('DB_PASSWORD'),  # Mot de passe Render
+        'HOST': 'dpg-xxx-xxx.render.com',  # Host Render
+        'PORT': '5432',               # Port Render
     }
 }
 
