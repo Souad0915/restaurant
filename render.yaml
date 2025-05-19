@@ -1,23 +1,6 @@
 services:
   - type: web
-    name: monprojetgl
+    name: your-service-name
     env: python
-    buildCommand: |
-      pip install -r requirements.txt
-      python manage.py collectstatic --noinput
-      python manage.py migrate --noinput
-    startCommand: "gunicorn monprojet.wsgi:application"
-    envVars:
-      - key: DEBUG
-        value: false
-      - key: SECRET_KEY
-        generateValue: true
-      - key: DATABASE_URL
-        fromDatabase:
-          name: assistant
-          property: connectionString
-
-databases:
-  - name: assistant
-    databaseName: dbname
-    user: dbuser
+    buildCommand: "pip install -r requirements.txt && python manage.py collectstatic --noinput"
+    startCommand: "/opt/render/project/src/.venv/bin/gunicorn monprojet.wsgi --bind 0.0.0.0:$PORT"
