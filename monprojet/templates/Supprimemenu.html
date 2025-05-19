@@ -1,0 +1,144 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supprimer un Plat</title>
+    <link rel="stylesheet" href="">
+    <style>
+        /* Style général de la page */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Conteneur principal */
+.content {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+/* Titre de la section */
+h2 {
+    font-size: 2rem;
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Texte d'introduction */
+p {
+    font-size: 1.1rem;
+    color: #555;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Formulaire de suppression */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Champs du formulaire */
+label {
+    font-size: 1rem;
+    color: #333;
+}
+
+input, textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+    color: #555;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Image du plat */
+img {
+    margin-top: 15px;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 150px;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Bouton de suppression */
+button.delete {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button.delete:hover {
+    background-color: #c0392b;
+}
+
+button.delete:active {
+    background-color: #a93226;
+}
+
+/* Affichage si aucune image */
+p {
+    color: #e74c3c;
+    text-align: center;
+    font-style: italic;
+}
+
+    </style>
+</head>
+<body>
+    <div class="content">
+        <!-- Formulaire de suppression du menu -->
+        <section id="supprimer-menu">
+            <h2>SUPPRIMER UN PLAT</h2>
+            <p>Êtes-vous sûr de vouloir supprimer ce plat ? Cette action est irréversible.</p>
+            <form id="form-suppression" method="POST">
+                {% csrf_token %}
+                
+                <label for="nom-supprimer">Nom du plat</label>
+                <input type="text" id="nom-supprimer" name="nom-supprimer" value="{{ menu.nom_menu }}" readonly>
+
+                <label for="prix-supprimer">Prix du plat</label>
+                <input type="text" id="prix-supprimer" name="prix-supprimer" value="{{ menu.prix }} FD" readonly>
+
+                <label for="description-supprimer">Description</label>
+                <textarea id="description-supprimer" name="description-supprimer" readonly>{{ menu.description }}</textarea>
+
+                <label for="image-supprimer">Image</label>
+                {% if menu.image %}
+                    <img src="{{ menu.image.url }}" alt="{{ menu.nom_menu }}" style="width: 150px; height: auto;">
+                {% else %}
+                    <p>Aucune image disponible</p>
+                {% endif %}
+
+                <button type="submit" class="delete">Supprimer le Plat</button>
+            </form>
+        </section>
+    </div>
+</body>
+</html>

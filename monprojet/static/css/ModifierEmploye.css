@@ -1,0 +1,82 @@
+/* Style global du body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7f6;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Section de formulaire de modification */
+#modifier-employe {
+    background-color: #ffffff;
+    padding: 30px;
+    margin-top: 40px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Titre du formulaire */
+#modifier-employe h2 {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Style pour les labels */
+#modifier-employe form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Style pour les champs du formulaire */
+#modifier-employe form input,
+#modifier-employe form select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+/* Change la bordure quand un champ est en focus */
+#modifier-employe form input:focus,
+#modifier-employe form select:focus {
+    border-color: #2c3e50;
+    outline: none;
+}
+
+/* Bouton de soumission */
+#modifier-employe form button {
+    background-color: #2c3e50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+/* Changement de couleur du bouton au survol */
+#modifier-employe form button:hover {
+    background-color: #34495e;
+}
+
+/* Style pour le formulaire sur les écrans mobiles */
+@media (max-width: 600px) {
+    #modifier-employe {
+        width: 90%;
+        padding: 15px;
+    }
+}

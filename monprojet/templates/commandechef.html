@@ -1,0 +1,135 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afficher les Commandes</title>
+    <link rel="stylesheet" href="{% static 'css/commande.css' %}?v=2">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .commandes-table {
+            width: 100%;
+            font-size: 12px;
+        }
+        .commandes-table th, .commandes-table td {
+            padding: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .commandes-table th:nth-child(1), .commandes-table td:nth-child(1) { width: 5%; }
+        .commandes-table th:nth-child(2), .commandes-table td:nth-child(2) { width: 10%; }
+        .commandes-table th:nth-child(3), .commandes-table td:nth-child(3) { width: 15%; }
+        .commandes-table th:nth-child(4), .commandes-table td:nth-child(4) { width: 8%; }
+        .commandes-table th:nth-child(5), .commandes-table td:nth-child(5) { width: 12%; }
+        .commandes-table th:nth-child(6), .commandes-table td:nth-child(6) { width: 5%; }
+        .commandes-table th:nth-child(7), .commandes-table td:nth-child(7) { width: 5%; }
+        .commandes-table th:nth-child(8), .commandes-table td:nth-child(8) { width: 8%; }
+        .commandes-table th:nth-child(9), .commandes-table td:nth-child(9) { width: 8%; }
+        .commandes-table th:nth-child(10), .commandes-table td:nth-child(10) { width: 8%; }
+        .en-attente {
+          background-color: orange;
+          color: white;
+        }
+        /* En attente */
+button.en-attente {
+    background-color: orange;
+    color: white;
+}
+
+button.en-attente:hover {
+    background-color: #cc8400; /* Couleur de survol pour en-attente */
+    transform: scale(1.05);
+}
+
+button.en-attente:active {
+    background-color: #b37500; /* Couleur active pour en-attente */
+}
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="profile">
+                <img src="{% static 'img/chefs/chefs-1.jpg' %}" alt="Employé" class="profile-image">
+                <h2 class="nom-employe">{% if request.session.nom_utilisateur %}
+                    {{ request.session.nom_utilisateur }}
+                {% else %}
+                    Nom Employé
+                {% endif %}</h2>
+            </div>
+            <div class="links">
+                <a href="{% url 'commandechef' %}">Affichage des commandes</a>
+                <a href="{% url 'AjouteStocks' %}">Gestion des stocks</a>
+                <a href="{% url 'stocks' %}">Affichage des stocks</a>
+                <a href="{% url 'deconnexion' %}">Déconnexion</a>
+            </div>
+        </div>
+        <div class="main-content">
+            <h1 class="page-title">AFFICHAGE DES COMMANDES</h1>
+            <div class="table-container">
+                <table class="commandes-table">
+                    <thead>
+                        <tr>
+                            <th>Numéro</th>
+                            <th>Nom du Client</th>
+                            <th>Email</th>
+                            <th>Téléphone</th>
+                            <th>Plats Commandés</th>
+                            <th>Quantités</th>
+                            <th>Prix</th>
+                            <th>Approuver</th>
+                            <th>En Attente</th>
+                            <th>Annuler</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for commande in commandes %}
+                        <tr>
+                            <td>{{ commande.id }}</td>
+                            <td>{{ commande.customer_name }}</td>
+                            <td>{{ commande.email }}</td>
+                            <td>{{ commande.phone }}</td>
+                            <td>
+                                {{ commande.menu_name }}
+                                {% if commande.other_dish %}
+                                    <br>+ {{ commande.other_dish }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {{ commande.quantity }}
+                                {% if commande.other_dish_quantity %}
+                                    <br>+ {{ commande.other_dish_quantity }}
+                                {% endif %}
+                            </td>
+                            <td>{{ commande.menu_total_price }}fr</td>
+                            <td>
+                                <form method="post" action="{% url 'update_commande_status' commande.id 'Approuvé' %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="approve">Approuver <i class="fas fa-check"></i></button>
+                                </form>
+                            </td>
+                            <td>
+                                <form method="post" action="{% url 'update_commande_status' commande.id 'En attente' %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="en-attente">En attente <i class="fas fa-spinner"></i></button>
+                                </form>
+                            </td>
+                            <td>
+                                <form method="post" action="{% url 'update_commande_status' commande.id 'Annulé' %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="cancel">Annuler <i class="fas fa-times"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'commande.js' %}"></script>
+</body>
+</html>

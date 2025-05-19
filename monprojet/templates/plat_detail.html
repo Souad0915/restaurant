@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>{{ plat.nom_menu }}</h1>
+    <p>Description : {{ plat.description }}</p>
+    <p>Prix : {{ plat.prix }}€</p>
+    <p>Catégorie : {{ plat.categorie }}</p>
+    <a href="{% url 'Analyse' %}" class="btn btn-secondary">Retour aux analyses</a>
+</div>
+{% endblock %}

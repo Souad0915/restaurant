@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Stocks</title>
+    <link rel="stylesheet" href="{% static 'css/AjouteStocks.css' %}? v=2">
+    <style>
+        /* Styles existants conservés */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Côté gauche -->
+        <div class="sidebar">
+            <div class="profile">
+                <img src="{% static 'img/chefs/chefs-1.jpg' %}" alt="Employé" class="profile-image">
+                <h2 class="nom-employe">
+                    {% if request.session.nom_utilisateur %}
+                        {{ request.session.nom_utilisateur }}
+                    {% else %}
+                        Nom Employé
+                    {% endif %}
+                </h2>
+            </div>
+
+            <div class="links">
+                <a href="{% url 'commandechef' %}">Affichage des commandes</a>
+                <a href="{% url 'AjouteStocks' %}">Gestion des stocks</a>
+                <a href="{% url 'stocks' %}">Affichage des stocks</a>
+                <a href="{% url 'deconnexion' %}">Déconnexion</a>
+            </div>
+        </div>
+
+        <!-- Contenu principal -->
+        <div class="main-content">
+            <h1 class="page-title">Gestion des Stocks</h1>
+            
+            <!-- Formulaire POST avec action -->
+            <form method="post" action="{% url 'ajoute_stock' %}" class="gestion-stock">
+                {% csrf_token %}  <!-- Protection CSRF obligatoire en Django -->
+
+                <label for="categorie">Catégorie :</label>
+                <select id="categorie" name="categorie" required>
+                    <option value="fruits">Fruits</option>
+                    <option value="legumes">Légumes</option>
+                    <option value="viandes">Viandes</option>
+                    <option value="poissons">Poissons</option>
+                    <option value="boissons">Boissons</option>
+                    <option value="produits_laitiers">Produits Laitiers</option>
+                    <option value="epices">Épices</option>
+                </select>
+                
+                <label for="produit">Produit :</label>
+                <input type="text" id="produit" name="produit" placeholder="Ex: Tomates" required>
+                
+                <label for="quantite">Quantité :</label>
+                <input type="number" id="quantite" name="quantite" placeholder="Quantité du produit" min="1" required>
+
+                <button type="submit" id="ajouter-stock">Ajouter au stock</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="{% static 'js/AjouteStocks.js' %}"></script>
+</body>
+</html>

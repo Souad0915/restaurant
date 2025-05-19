@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter un Employé</title>
+    <link rel="stylesheet" href="{% static 'css/AjouterEmploye.css' %}?v=2">
+</head>
+<body>
+    <div class="content">
+        <section id="ajouter-employe">
+            <h2>Ajouter un Nouvel Employé</h2>
+            
+        
+            <!-- Formulaire d'ajout -->
+            <form id="formulaire-ajout" action="{% url 'ajouter_employe' %}" method="POST">
+                {% csrf_token %}
+                
+                <label for="nom">Nom :</label>
+                <input type="text" id="nom" name="nom" required>
+        
+                <label for="fonction">Fonction :</label>
+                <input type="text" id="fonction" name="fonction" required>
+        
+                <label for="salaire">Salaire :</label>
+                <input type="number" id="salaire" name="salaire" required>
+        
+                <label for="email">Email :</label>
+                <input type="email" id="email" name="email" required>
+        
+                <label for="numero">Numéro :</label>
+                <input type="text" id="numero" name="numero" required>
+        
+                <label for="statut">Statut :</label>
+                <select id="statut" name="statut">
+                    <option value="actif">Actif</option>
+                    <option value="inactif">Inactif</option>
+                </select>
+
+                <!-- Champ mot de passe -->
+                <label for="mot_de_passe">Mot de passe :</label>
+                <input type="password" id="mot_de_passe" name="password" required>
+                
+                <button type="submit">Ajouter l'Employé</button>
+            </form>
+        </section>
+    </div>
+</body>
+</html>

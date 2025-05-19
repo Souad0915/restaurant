@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifier un Plat</title>
+    <link rel="stylesheet" href="{% static 'css/Ajoutemenu.css' %}">
+
+    
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>Modifier un Plat</h2>
+       <form method="POST" action="{% url 'modifier_menu' menu.id_menu %}" enctype="multipart/form-data">
+
+            {% csrf_token %}
+            
+            <!-- Champ pour le nom du plat -->
+            <input type="text" id="dishName" name="nom_menu" value="{{ menu.nom_menu }}" placeholder="Nom du plat" required><br>
+
+            <!-- Champ pour la description du plat -->
+            <textarea id="dishDescription" name="description" placeholder="Description du plat" required>{{ menu.description }}</textarea><br>
+
+            <!-- Champ pour le prix du plat -->
+            <input type="number" id="dishPrice" name="prix" value="{{ menu.prix }}" placeholder="Prix du plat" required><br>
+
+            <!-- Champ pour l'image du plat -->
+            <input type="file" id="dishImage" name="image" accept="image/*"><br>
+            
+            {% if menu.image %}
+            <div>
+                <img src="{{ menu.image.url }}" alt="Image du plat" style="width: 80px; height: auto;">
+            </div>
+        {% else %}
+            <div>
+                <img src="{% static 'images/default-image.jpg' %}" alt="Image par défaut" style="width: 80px; height: auto;">
+            </div>
+        {% endif %}
+        
+
+            <!-- Bouton pour soumettre le formulaire -->
+            <button type="submit">Enregistrer les modifications</button>
+        </form>
+    </div>
+
+    <script>
+        // Simuler les données existantes d'un plat
+        const existingDish = {
+            name: "{{ menu.nom_menu }}",
+            description: "{{ menu.description }}",
+            price: "{{ menu.prix }}",
+            
+        };
+
+        // Remplir les champs du formulaire avec les données existantes
+        document.getElementById("dishName").value = existingDish.name;
+        document.getElementById("dishDescription").value = existingDish.description;
+        document.getElementById("dishPrice").value = existingDish.price;
+
+        // Afficher l'image actuelle du plat
+        if (existingDish.imageUrl) {
+            const imgContainer = document.createElement("div");
+            imgContainer.innerHTML = `<img src="${existingDish.imageUrl}" alt="Image du plat" style="width: 80px; height: auto;">`;
+            document.querySelector(".form-container").appendChild(imgContainer);
+        }
+
+        // Gérer la soumission du formulaire en JavaScript (facultatif, ici on laisse Django gérer la soumission côté serveur)
+        document.getElementById("editMenuForm").addEventListener("submit", function(event) {
+            // Récupérer les nouvelles valeurs du formulaire
+            const updatedName = document.getElementById("dishName").value;
+            const updatedDescription = document.getElementById("dishDescription").value;
+            const updatedPrice = document.getElementById("dishPrice").value;
+            const updatedImage = document.getElementById("dishImage").files[0] ? document.getElementById("dishImage").files[0].name : existingDish.imageUrl;
+
+            // Afficher dans la console les nouvelles valeurs (vous pouvez ici envoyer les données à un serveur si vous le souhaitez)
+            console.log("Plat modifié : ", updatedName, updatedDescription, updatedPrice, updatedImage);
+        });
+    </script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("editFormContainer").style.display = "block";
+    });
+</script>
+
+</body>
+</html>

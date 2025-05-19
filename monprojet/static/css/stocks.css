@@ -1,0 +1,130 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 200px;
+    background-color: #554704;
+    color: rgb(255, 255, 255);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.nom-employe {
+    margin: 0;
+    font-size: 10px;
+    font-weight: 800;
+    font-family: 'Arial', sans-serif; 
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 220px;
+}
+
+a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-size: 18px;
+    
+    padding: 10px;
+    background-color: #554704;
+    font-weight: bold;
+    
+    
+}
+
+a:hover {
+    background-color: #554704;
+}
+
+
+.main-content {
+    padding: 20px;
+    flex-grow: 1;
+    background-color: #fff;
+}
+
+/* Titre de la page - met le titre en haut */
+.page-title {
+    font-size: 28px;
+    font-weight: bold;
+    text-align: left;
+    margin-bottom: 20px;
+    color: #554704;
+    text-decoration: underline;
+}
+
+/* Grid pour afficher les stocks */
+.stock-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 30px;
+}
+
+.stock-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.stock-box {
+    width: 200px;
+    height: 100px;
+    background-color: #554704;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.stock-box:hover {
+    transform: scale(1.05);
+}
+
+.stock-box:active {
+    transform: scale(0.98);
+}
+
+/* Responsivité : réajuste la grille pour les petits écrans */
+@media (max-width: 768px) {
+    .stock-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .stock-grid {
+        grid-template-columns: 1fr;
+    }
+}

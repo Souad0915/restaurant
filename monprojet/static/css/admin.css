@@ -1,0 +1,140 @@
+/* Global styles */
+/* Modification pour la barre de navigation horizontale */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    /* display: flex; /* Supprime le flex pour que le body s'écoule normalement */
+    background-color: #f4f4f4;
+    min-height: 100vh; /* Utilise min-height pour s'assurer que le body couvre au moins la hauteur de l'écran */
+    overflow-x: hidden; /* Empêche le défilement horizontal inutile */
+}
+
+.sidebar {
+    width: 100%; /* La barre prend toute la largeur */
+    background-color: #554704;
+    color: white;
+    height: auto; /* La hauteur s'ajuste au contenu */
+    padding: 10px 0; /* Réduit le padding vertical, ajoute un peu de padding horizontal si nécessaire */
+    position: fixed; /* Garde la barre en haut lors du défilement */
+    top: 0;
+    left: 0;
+    z-index: 100; /* Assure-toi qu'elle est au-dessus du contenu principal */
+    display: flex; /* Pour aligner les éléments horizontalement */
+    justify-content: center; /* Centre les éléments du menu */
+    align-items: center; /* Centre verticalement les éléments du menu */
+}
+
+.sidebar .profile {
+    display: none; /* Cache la section du profil (l'image et le nom) pour une barre horizontale */
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0; /* Supprime les marges par défaut de la liste */
+    display: flex; /* Aligne les éléments de la liste horizontalement */
+}
+
+.sidebar ul li {
+    padding: 10px 15px; /* Réduit le padding vertical, ajuste le padding horizontal */
+    text-align: center;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px; /* Ajuste la taille de la police si nécessaire */
+    display: block;
+}
+
+.sidebar ul li:hover {
+    background-color: #6d5b1a; /* Couleur de fond au survol, légèrement plus claire */
+}
+
+/* Ajustement du contenu principal pour ne pas être caché par la barre de navigation fixe */
+.main-content {
+    margin-top: 60px; /* Ajoute une marge en haut pour laisser de l'espace pour la barre de navigation (ajuste cette valeur si la hauteur de ta barre change) */
+    margin-left: 0; /* Supprime la marge à gauche */
+    width: 100%;
+    padding: 15px; /* Remet le padding pour le contenu principal */
+    background-color: #fff;
+    min-height: calc(100vh - 60px); /* Ajuste la hauteur minimum du contenu principal */
+    overflow-y: auto; /* Permet le défilement vertical du contenu */
+}
+
+/* Tu peux conserver ou ajuster les styles des graphiques et autres éléments selon tes besoins */
+
+/* Container pour tableau de bord et graphiques */
+.dashboard-container {
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px  #554704;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Tableau de bord */
+.dashboard h1 {
+    font-size: 10px; /* Réduit la taille du titre */
+    margin-top: 5px;
+    text-decoration: underline;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Items du tableau de bord */
+.dashboard-items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+/* Style pour chaque élément du tableau de bord */
+.dashboard-items .item {
+    background-color: #554704;
+    padding: 15px; /* Réduit le padding des items */
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 0 8px  #554704;
+    height: 50px; /* Réduit encore la hauteur de chaque rectangle */
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.dashboard-items .item h2 {
+    font-size: 13px; /* Réduit la taille du titre */
+    margin-bottom: 5px;
+    color: white;
+}
+
+.dashboard-items .item p {
+    font-size: 18px; /* Réduit la taille du texte */
+    font-weight: bold;
+    color: white;
+}
+
+/* Graphiques */
+.charts {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2px;
+}
+
+.chart-container {
+    width: 48%; /* Garder les graphiques côte à côte */
+    background-color: white;
+    padding: 30px;
+    border-radius: 0px;
+    
+    height: 40vh; /* Augmenter la hauteur des graphiques pour qu'ils soient bien visibles */
+}
+
+canvas {
+    width: 100% !important;
+    height: 100% !important;
+}

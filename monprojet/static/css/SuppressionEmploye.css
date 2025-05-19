@@ -1,0 +1,64 @@
+/* Style du formulaire de suppression */
+#supprimer-employe {
+    background-color: #ffffff;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+#supprimer-employe h2 {
+    color: #333;
+}
+
+#supprimer-employe p {
+    font-size: 16px;
+    color: #e74c3c;
+    margin-bottom: 20px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    color: #666;
+}
+
+form button.delete {
+    background-color: #e74c3c;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+}
+
+form button.delete:hover {
+    background-color: #c0392b;
+}
+
+/* Styles responsives */
+@media (max-width: 600px) {
+    #supprimer-employe {
+        width: 100%;
+        padding: 10px;
+    }
+}

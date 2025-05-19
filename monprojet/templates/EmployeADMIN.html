@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Employés</title>
+    <link rel="stylesheet" href="{% static 'css/employeAdmin.css' %}?v =2">
+</head>
+<body>
+
+<div class="sidebar">
+    <div class="profile">
+        <img src="{% static 'img/chefss.jpg' %}" alt="Profil Administrateur" height="17%" width="90%">
+        <p style="font-size: 11px; text-align: center;">
+            {% if request.session.nom_utilisateur %}
+            {{ request.session.nom_utilisateur }}
+        {% else %}
+            Nom de l'Administration
+        {% endif %}
+    </p>
+    </div>
+    <ul>
+        <li><a href="{% url 'tableau_bord' %}">TABLEAU DE BORD</a></li>
+        <li><a href="{% url 'Analyse' %}">ANALYSE IA</a></li>
+        <li><a href="{% url 'menu' %}">MENU</a></li>
+        <li><a href="{% url 'EmployeADMIN' %}">EMPLOYE</a></li>
+        <li><a href="{% url 'reservation' %}">RESERVATION</a></li>
+        <li><a href="{% url 'deconnexion' %}">DECONNEXION</a></li>
+    </ul>
+</div>
+
+<div class="content">
+    <section id="employes">
+        <h2>LES EMPLOYÉS</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>NOM</th>
+                    <th>FONCTION</th>
+                    <th>SALAIRE</th>
+                    <th>EMAIL</th>
+                    <th>NUMÉRO</th>
+                    <th>ACTIF</th>
+                    <th>MODIFIER</th>
+                    <th>SUPPRIMER</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for employe in employes %}
+                <tr>
+                    <td>{{ employe.nom }}</td>
+                    <td>{{ employe.fonction }}</td>
+                    <td>{{ employe.salaire }} FD</td>
+                    <td>{{ employe.email }}</td>
+                    <td>{{ employe.numero }}</td>
+                    <td class="{% if employe.statut == 'actif' %}actif{% else %}inactif{% endif %}">
+                        {{ employe.get_statut_display }}
+                    </td>
+                    <td><a href="{% url 'modifierEmploye' employe.id %}"><button class="edit">⚙️</button></a></td>
+                    <td><a href="{% url 'supprimerEmploye' employe.id %}"><button class="delete">🗑️</button></a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+</div>
+
+<!-- Image en bas à droite de la page -->
+<div class="bottom-image">
+    <img id="clickable-image" src="{% static 'img/+.jpg' %}" alt="Image Ajout Employé" onclick="redirectToAddEmploye()">
+</div>
+
+<!-- JavaScript pour rediriger vers la page ajoutEmploye -->
+<script>
+    function redirectToAddEmploye() {
+        window.location.href = "{% url 'ajouter_employe' %}";
+    }
+</script>
+
+<script src="{% static 'js/EmployeADMIN.js' %}"></script>
+
+</body>
+</html>

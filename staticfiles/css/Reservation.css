@@ -1,0 +1,183 @@
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    background-color: #f4f4f4;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Sidebar styles */
+.sidebar {
+    width: 220px; /* Réduit la largeur de la sidebar */
+    background-color: #8a760f;
+    color: white;
+    height: 100vh;
+    padding: 15px; /* Réduit le padding pour la sidebar */
+    position: fixed; /* Sidebar reste fixe */
+    top: 0;
+    left: 0;
+}
+
+/* Menu de navigation */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    padding: 15px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    display: block;
+}
+
+ul li:hover {
+    background-color: #685d2a;
+}
+
+/* Contenu principal */
+.content {
+    margin-left: 250px;
+    padding: 20px;
+    overflow: hidden;
+}
+
+/* Titre */
+h2 {
+    text-align: center;
+    color: #2c3e50;
+}
+
+/* Style du tableau */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    color: #333;
+    text-align: center;
+    font-size: 16px;
+}
+
+th {
+    background-color: #8a760f;
+    color: white;
+    font-size: 18px;
+}
+
+td {
+    background-color: #f9f9f9;
+}
+
+/* Colonnes approuvé et annulé */
+.approuve, .annule {
+    font-weight: bold;
+}
+
+.approuve {
+    color: #27ae60; /* Vert pour approbation */
+}
+
+.annule {
+    color: #e74c3c; /* Rouge pour annulation */
+}
+
+/* Boutons d'action */
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+button.approuver {
+    background-color: #27ae60;
+    color: white;
+}
+
+button.approuver:hover {
+    background-color: #2ecc71;
+}
+
+button.annuler {
+    background-color: #e74c3c;
+    color: white;
+}
+
+button.annuler:hover {
+    background-color: #c0392b;
+}
+
+button.delete {
+    color: #e74c3c;
+}
+
+button.edit {
+    color: #f39c12;
+}
+
+/* Style des boutons lorsque l'élément est désactivé */
+button[disabled] {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+}
+
+/* Styles responsives */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+    }
+
+    .content {
+        margin-left: 200px;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 6px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .content {
+        margin-left: 0;
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    button {
+        font-size: 12px;
+        padding: 5px 10px;
+    }
+}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afficher les Stocks</title>
+    <link rel="stylesheet" href="{% static 'css/stocks.css' %}? v=2">
+</head>
+<body>
+    <div class="container">
+        <!-- Côté gauche -->
+        <div class="sidebar">
+            <div class="profile">
+                <img src="{% static 'img/chefs/chefs-1.jpg' %}" alt="Employé" class="profile-image">
+                <h2 class="nom-employe">
+                    {% if request.session.nom_utilisateur %}
+                        {{ request.session.nom_utilisateur }}
+                    {% else %}
+                        Nom Employé
+                    {% endif %}
+                </h2>
+            </div>
+
+            <div class="links">
+                <a href="{% url 'commandechef' %}">Affichage des commandes</a>
+                <a href="{% url 'AjouteStocks' %}">Gestion des stocks</a>
+                <a href="{% url 'stocks' %}">Affichage des stocks</a>
+                <a href="{% url 'deconnexion' %}">Déconnexion</a>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <h1 class="page-title">Affichage des Stocks</h1>
+            <div class="stock-grid">
+                <div class="stock-item">
+                    <a href="{% url 'fruits' %}" class="stock-item">
+                        <div class="stock-box">Fruits</div>
+                    </a>
+                </div>
+                <div class="stock-item">
+                    <a href="{% url 'legumes' %}" class="stock-item">
+                        <div class="stock-box">Légumes</div>
+                    </a>
+                </div>
+                <div class="stock-item">
+                    <a href="{% url 'viandes' %}" class="stock-item">
+                        <div class="stock-box">Viandes</div>
+                    </a>
+                </div>
+                <div class="stock-item">
+                    <a href="{% url 'poissons' %}" class="stock-item">
+                        <div class="stock-box">Poissons</div>
+                    </a>
+                </div>
+                <div class="stock-item">
+                    <a href="{% url 'boissons' %}" class="stock-item">
+                        <div class="stock-box">Boissons</div>
+                    </a>
+                </div>
+                <div class="stock-item">
+                    <a href="{% url 'produits_laitiers' %}" class="stock-item">
+                        <div class="stock-box">Produits Laitiers</div>
+                    </a>
+                </div>
+                <div class="stock-item">
+                    <a href="{% url 'epices' %}" class="stock-item">
+                        <div class="stock-box">Épices</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

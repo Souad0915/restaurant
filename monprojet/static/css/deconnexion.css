@@ -1,0 +1,78 @@
+/* Réinitialisation des marges et du padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Container principal */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+}
+
+/* Contenu principal */
+.content {
+    text-align: center;
+    padding: 30px;
+    border: 1px solid #ccc;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Titre de la page */
+h1 {
+    color: #8a760f;
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+/* Message de confirmation */
+p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+/* Style des boutons */
+.buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+/* Bouton de déconnexion */
+.logout-btn {
+    background-color: #e74c3c;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+/* Bouton d'annulation */
+.cancel-btn {
+    background-color: #3498db;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+/* Effet au survol des boutons */
+.logout-btn:hover {
+    background-color: #c0392b;
+}
+
+.cancel-btn:hover {
+    background-color: #2980b9;
+}

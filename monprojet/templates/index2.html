@@ -1,0 +1,759 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Restaurantly</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+</head>
+
+  <!-- =======================================================
+  * Template Name: Restaurantly - v3.1.0
+  * Template URL: https://bootstrapmade.com/restaurantly-restaurant-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+
+<style>
+  /*--------------------------------------------------------------
+# Commande
+--------------------------------------------------------------*/
+body {
+  font-family: Arial, sans-serif;
+  background-color: #000; /* Fond noir */
+  color: white; /* Texte blanc */
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+/* Conteneur du formulaire */
+.form-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  height: 100%;
+}
+
+/* Style du titre principal */
+h1 {
+  font-size: 2rem;
+  text-align: left;
+  color: white;
+  display: inline-block;
+}
+
+h1 .line {
+  display: inline-block;
+  width: 150px;
+  height: 2px;
+  background-color: white;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+/* Titre secondaire */
+h2 {
+  text-align: left;
+  color: orange; /* Titre en orange */
+  font-size: 1.4rem;
+  margin-top: 2px;
+}
+
+/* Disposition des champs en deux colonnes */
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+/* Colonne de gauche et droite */
+.form-left, .form-right {
+  width: 48%;
+}
+
+/* Champs de saisie */
+input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="time"],
+select,
+input[type="number"] {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.2rem;
+  border: 2px solid orange; /* Bordure orange */
+  border-radius: 4px;
+  background-color: #333; /* Fond sombre pour les champs */
+  color: white; /* Texte blanc */
+  margin-bottom: 20px;
+}
+
+input::placeholder,
+select::placeholder {
+  color: #bbb; /* Texte gris clair pour le placeholder */
+}
+/* Style du textarea */
+textarea.form-control {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.2rem;
+  border: 2px solid orange; /* Bordure orange */
+  border-radius: 4px;
+  background-color: #333; /* Fond sombre pour le champ */
+  color: white; /* Texte blanc */
+  margin-bottom: 20px;
+  resize: vertical; /* Permet de redimensionner le champ uniquement verticalement */
+}
+
+textarea.form-control::placeholder {
+  color: #bbb; /* Texte gris clair pour le placeholder */
+}
+
+
+/* Bouton de soumission */
+button {
+  padding: 12px 20px;
+  font-size: 1.2rem;
+  background-color: orange; /* Bouton orange */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+  width: 200px;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Effet au survol du bouton */
+button:hover {
+  background-color: #e67e00;
+}
+</style>
+<body>
+
+  <!-- ======= Top Bar ======= -->
+  <div id="topbar" class="d-flex align-items-center fixed-top">
+    <div class="container d-flex justify-content-center justify-content-md-between">
+
+      <div class="contact-info d-flex align-items-center">
+        <i class="bi bi-phone d-flex align-items-center"><span>+253 77481632</span></i>
+        <i class="bi bi-clock d-flex align-items-center ms-4"><span> Dim-Ven: 07H - 00H</span></i>
+      </div>
+
+      
+    </div>
+  </div>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-cente">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-lg-between">
+
+      <h1 class="logo me-auto me-lg-0"><a href="index2.html">RESTAURANTLY</a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a class="nav-link scrollto active" href="#hero">Acceuil</a></li>
+          <li><a class="nav-link scrollto" href="#about">A propos</a></li>
+          <li><a class="nav-link scrollto" href="#menu">Menu</a></li>
+          <li><a class="nav-link scrollto" href="#specials">Specials</a></li>
+          <li><a class="nav-link scrollto" href="#commande">Commande</a></li>
+          <li><a class="nav-link scrollto" href="#chefs">Employe</a></li>
+          <li><a class="nav-link scrollto" href="#gallery">Gallerie</a></li>
+          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          {% if user.is_authenticated %}
+          <li>
+            <a class="nav-link scrollto" href="{% url 'logout' %}" style="color: #ff0000;">
+              <i class="bi bi-box-arrow-right"></i> Déconnexion
+            </a>
+          </li>
+          {% endif %}
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+    <div class="container position-relative text-center text-lg-start" data-aos="zoom-in" data-aos-delay="100">
+      <div class="row">
+        <div class="col-lg-8">
+          <h1>Bienvenue chez <span>Restaurantly</span></h1>
+          <h2>Livrant de bons repas depuis plus de 18 ans!</h2>
+
+          <div class="btns">
+            <a href="#menu" class="btn-menu animated fadeInUp scrollto">Nos Menus</a>
+          </div>
+        </div>
+        <div class="col-lg-4 d-flex align-items-center justify-content-center position-relative" data-aos="zoom-in" data-aos-delay="200">
+          <a href="" class="glightbox play-btn"></a>
+        </div>
+
+      </div>
+    </div>
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row">
+          <div class="col-lg-6 order-1 order-lg-2" data-aos="zoom-in" data-aos-delay="100">
+            <div class="about-img">
+             <img src="{% static 'assets/img/about.jpg' %}" alt="">
+            </div>
+          </div>
+          <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
+            <h3> À PROPOS DE NOUS.</h3>
+            <p class="fst-italic">
+              Restaurantly est une solution de gestion complète pour les 
+              restaurants, conçue pour simplifier la gestion des commandes, des 
+              réservations, des stocks et des finances. Avec une interface intuitive, 
+              elle permet de centraliser toutes les opérations, de la prise de 
+              commande à la gestion des inventaires, tout en offrant des outils 
+              d’analyse des performances. Que vous soyez un petit établissement 
+              ou une chaîne, Restaurantly vous aide à optimiser votre gestion, 
+              réduire les coûts et améliorer l'expérience client.
+              Grâce à une interface intuitive et des fonctionnalités avancées, vous 
+              pouvez gérer en toute simplicité vos menus, vos équipes et vos 
+              services en temps réel, où que vous soyez.
+            </p>
+            <ul>
+              <li><i class="bi bi-check-circle"></i> Réservation simplifiée : Réservez une table en quelques clics grâce à une interface intuitive et rapide.</li>
+              <li><i class="bi bi-check-circle"></i> Découverte des restaurants : Explorez une vaste sélection de restaurants près de chez vous, avec des avis détaillés pour faire votre choix.</li>
+              <li><i class="bi bi-check-circle"></i> Commandes à emporter : Commandez directement depuis l'app et récupérez vos plats préférés à emporter en toute simplicité.</li>
+            </ul>
+            <p>
+              Restaurantly rend chaque repas plus facile et agréable, en un simple geste !
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End About Section -->
+
+    <!-- ======= Why Us Section ======= -->
+    <section id="why-us" class="why-us">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>POURQUOI NOUS</h2>
+          <p>Pourquoi Choisir Notre Restaurant?</p>
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-4">
+            <div class="box" data-aos="zoom-in" data-aos-delay="100">
+              <span>01</span>
+              <h4>Expertise culinaire depuis 18 ans</h4>
+              <p>Nous mettons plus de 18 ans d'expérience 
+                au service de vos papilles. Chaque plat est 
+                préparé avec passion et savoir-faire, 
+                garantissant une qualité et un goût inégalés.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 mt-4 mt-lg-0">
+            <div class="box" data-aos="zoom-in" data-aos-delay="200">
+              <span>02</span>
+              <h4>Ingrédients frais et locaux</h4>
+              <p>Nous sélectionnons uniquement les 
+                meilleurs produits frais, locaux et de saison 
+                pour offrir à nos clients des repas non 
+                seulement délicieux mais aussi 
+                responsables et sains.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 mt-4 mt-lg-0">
+            <div class="box" data-aos="zoom-in" data-aos-delay="300">
+              <span>03</span>
+              <h4>  Service impeccable et ambiance 
+                conviviale</h4>
+              <p>Nous croyons qu'un bon repas doit être 
+                accompagné d'un service attentionné et d'une 
+                ambiance chaleureuse. Nos équipes sont là pour 
+                vous offrir une expérience inoubliable, que ce 
+                soit pour un repas en famille, entre amis ou un 
+                dîner romantique.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Why Us Section -->
+
+    <!-- ======= Menu Section ======= -->
+    <!-- ======= Menu Section ======= -->
+   <section id="menu" class="menu section-bg">
+    <div class="container" data-aos="fade-up">
+        <div class="section-title">
+            <h2>Menu</h2>
+            <p>Consultez notre délicieux menu.</p>
+        </div>
+  
+        <div class="row" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-lg-12 d-flex justify-content-center">
+                <ul id="menu-flters">
+                    <li data-filter="*" class="filter-active">Tout</li>
+                    <li data-filter=".filter-starters">Entrées</li>
+                    <li data-filter=".filter-salads">Salades</li>
+                    <li data-filter=".filter-specialty">Spécialités</li>
+                </ul>
+            </div>
+        </div>
+  
+        <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
+            {% for categorie, menus in categories.items %}
+                {% for menu in menus %}
+                <div class="col-lg-6 menu-item {{ categorie }}">
+                    <img src="{{ menu.image.url }}" class="menu-img" alt="{{ menu.nom_menu }}">
+                    <div class="menu-content">
+                        <a href="{% url 'order_form' %}?name={{ menu.nom_menu|urlencode }}&price={{ menu.prix }}fdj&description={{ menu.description|urlencode }}">
+                            {{ menu.nom_menu }}
+                        </a><span>{{ menu.prix }}fdj</span>
+                    </div>
+                    <div class="menu-ingredients">
+                        {{ menu.description }}
+                    </div>
+                </div>
+                {% empty %}
+                
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+  </section>
+<!-- End Menu Section -->
+
+    <!-- ======= Specials Section ======= -->
+    <section id="specials" class="specials">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Specials</h2>
+          <p>Découvrez Nos Spécialités</p>
+        </div>
+
+        <div class="row" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-lg-3">
+            <ul class="nav nav-tabs flex-column">
+              <li class="nav-item">
+                <a class="nav-link active show" data-bs-toggle="tab" href="#tab-1">Riz au ploulet</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-2">Riz au poisson</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-3"> Double burger</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-4"> Tacos big</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-5"> Salade djiboutienne</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-9 mt-4 mt-lg-0">
+            <div class="tab-content">
+              <div class="tab-pane active show" id="tab-1">
+                <div class="row">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                    <h3>Riz au Poulet – Un Classique Réconfortant</h3>
+                    <p class="fst-italic">Savourez notre délicieux Riz au Poulet, un véritable 
+                      hommage aux saveurs authentiques. Ce plat 
+                      réconfortant combine du riz tendre et parfumé, cuit à la 
+                      perfection, avec des morceaux de poulet juteux et 
+                      légèrement épicés, le tout relevé d'un mélange d'herbes 
+                      et d'épices soigneusement sélectionnées. Accompagné 
+                      d'une sauce savoureuse qui enrobe chaque grain de riz, 
+                      notre Riz au Poulet est un plat équilibré, généreux et 
+                      plein de saveurs qui saura satisfaire vos papilles et 
+                      réchauffer vos cœurs. Un incontournable de notre carte, 
+                      idéal pour un repas en famille ou entre amis.</p>
+                  </div>
+                  <div class="col-lg-4 text-center order-1 order-lg-2">
+                    <img src="{% static 'img/rizpoulet.jpg' %}" alt="" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="tab-2">
+                <div class="row">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                    <h3>Riz au Poisson – Un Plat Spécial</h3>
+                    <p class="fst-italic">Notre riz au poisson est une véritable spécialité, alliant des ingrédients frais et savoureux pour un résultat à la fois délicat et gourmand. Le riz est cuit à la perfection, imprégné des arômes marins d'un poisson choisi avec soin, qu’il soit tendre ou plus corsé selon la recette du jour. Chaque bouchée vous transporte dans une explosion de saveurs, rehaussée par des épices subtilement sélectionnées, comme le curcuma ou le gingembre, pour une touche d'exotisme. Ce plat est idéal pour ceux qui recherchent un équilibre parfait entre légèreté et richesse en bouche, tout en appréciant la fraîcheur des produits de la mer. Une spécialité que vous ne voudrez pas manquer !</p>
+                    
+                  </div>
+                  <div class="col-lg-4 text-center order-1 order-lg-2">
+                    <img src="{% static 'img/riz_posson.jpg' %}" alt="" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="tab-3">
+                <div class="row">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                    <h3>Double Burger – La Référence des Gourmands</h3>
+                    <p class="fst-italic">Pour les amateurs de saveurs généreuses, notre double burger est un véritable régal ! Deux steaks savamment grillés, accompagnés de fromage fondant, de légumes frais et d'une sauce maison secrète, le tout dans un pain moelleux légèrement toasté. Chaque bouchée est une explosion de textures et de goûts qui satisfera les plus grands appétits. Un burger à la fois copieux et délicieux, parfait pour les vrais fans de burgers. Préparez-vous à vivre une expérience gustative unique !</p>
+                  </div>
+                  <div class="col-lg-4 text-center order-1 order-lg-2">
+                    <img src="{% static 'img/double burger.jpg' %}" alt="" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="tab-4">
+                <div class="row">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                    <h3>Tacos Big – Le Roi des Tacos</h3>
+                    <p class="fst-italic">
+                      Si vous êtes en quête d’une expérience gustative incroyable, notre Tacos Big est fait pour vous ! Garni de viande savoureuse, de fromages fondants et de sauces épicées, ce tacos géant est une véritable explosion de saveurs. Le tout est enveloppé dans une tortilla chaude et généreuse, prête à satisfaire vos plus grosses faims. Avec ses ingrédients frais et son goût inimitable, le Tacos Big s’impose comme le choix parfait pour les amateurs de sensations fortes. Préparez-vous à un festin !
+                    </p>
+                  </div>
+                  <div class="col-lg-4 text-center order-1 order-lg-2">
+                    <img src="{% static 'img/tacos.jpg' %}" alt="" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="tab-5">
+                <div class="row">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                    <h3>Salade Djiboutienne – Fraîcheur et Exotisme</h3>
+                    <p class="fst-italic">Savourez la fraîcheur de notre salade djiboutienne, un délicieux mélange de légumes croquants, de tomates juteuses et de concombre, le tout subtilement épicé. Rehaussée par une vinaigrette légère au citron et à la coriandre, elle offre une explosion de saveurs légères et équilibrées. Parfaite en entrée ou en accompagnement, cette salade vous invite à découvrir les arômes frais et authentiques de Djibouti, pour un véritable voyage culinaire.</p>
+                  </div>
+                  <div class="col-lg-4 text-center order-1 order-lg-2">
+                    <img src="{% static 'assets/img/menu/greek-salad.jpg' %}" alt="" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Specials Section -->
+
+    <!-- Commande Section -->
+
+
+    <!-- ======= Gallery Section ======= -->
+    <section id="gallery" class="gallery">
+    
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>GALLERIE</h2>
+          <p>Quelques Photos De Notre Restaurant</p>
+        </div>
+      </div>
+    
+      <div class="container-fluid" data-aos="fade-up" data-aos-delay="100">
+    
+        <div class="row g-0">
+    
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="{% static 'assets/img/gallery/gallery-1.jpg' %}" class="gallery-lightbox" data-gall="gallery-item">
+                <img src="{% static 'assets/img/gallery/gallery-1.jpg' %}" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+    
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="{% static 'assets/img/gallery/gallery-2.jpg' %}" class="gallery-lightbox" data-gall="gallery-item">
+                <img src="{% static 'assets/img/gallery/gallery-2.jpg' %}" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+    
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="{% static 'assets/img/gallery/gallery-3.jpg' %}" class="gallery-lightbox" data-gall="gallery-item">
+                <img src="{% static 'assets/img/gallery/gallery-3.jpg' %}" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+    
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="{% static 'assets/img/gallery/gallery-4.jpg' %}" class="gallery-lightbox" data-gall="gallery-item">
+                <img src="{% static 'assets/img/gallery/gallery-4.jpg' %}" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+    
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="{% static 'assets/img/gallery/gallery-5.jpg' %}" class="gallery-lightbox" data-gall="gallery-item">
+                <img src="{% static 'assets/img/gallery/gallery-5.jpg' %}" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+    
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="{% static 'assets/img/gallery/gallery-6.jpg' %}" class="gallery-lightbox" data-gall="gallery-item">
+                <img src="{% static 'assets/img/gallery/gallery-6.jpg' %}" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+    
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="{% static 'assets/img/gallery/gallery-7.jpg' %}" class="gallery-lightbox" data-gall="gallery-item">
+                <img src="{% static 'assets/img/gallery/gallery-7.jpg' %}" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+    
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="{% static 'assets/img/gallery/gallery-8.jpg' %}" class="gallery-lightbox" data-gall="gallery-item">
+                <img src="{% static 'assets/img/gallery/gallery-8.jpg' %}" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+    
+        </div>
+    
+      </div>
+    </section><!-- End Gallery Section -->
+    
+    <!-- ======= Chefs Section ======= -->
+    <section id="chefs" class="chefs">
+      <div class="container" data-aos="fade-up">
+    
+        <div class="section-title">
+          <h2>ENPLOYE</h2>
+          <p> Nos Chefs Professionnels</p>
+        </div>
+    
+        <div class="row">
+    
+          <div class="col-lg-4 col-md-6">
+            <div class="member" data-aos="zoom-in" data-aos-delay="100">
+              <img src="{% static 'assets/img/chefs/chefs-1.jpg' %}" class="img-fluid" alt="">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>Walter White</h4>
+                  <span>Cuisinier</span>
+                </div>
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+    
+          <div class="col-lg-4 col-md-6">
+            <div class="member" data-aos="zoom-in" data-aos-delay="200">
+              <img src="{% static 'img/chefs/cheff.jpg' %}" class="img-fluid" alt="">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>Sarah Jhonson</h4>
+                  <span>Chefs</span>
+                </div>
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+    
+          <div class="col-lg-4 col-md-6">
+            <div class="member" data-aos="zoom-in" data-aos-delay="300">
+              <img src="{% static 'assets/img/chefs/chefs-3.jpg' %}" class="img-fluid" alt="">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>William Anderson</h4>
+                  <span>Cuisinier</span>
+                </div>
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+    
+        </div>
+    
+      </div>
+    </section><!-- End Chefs Section -->
+    
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container" data-aos="fade-up">
+    
+        <div class="section-title">
+          <h2>Contact</h2>
+          <p>CONTACTEZ NOUS !</p>
+        </div>
+      </div>
+    
+      <div data-aos="fade-up">
+        <img src="{% static 'path_to_image/your_image.jpg' %}" alt="">
+      </div>
+    
+      <div class="container" data-aos="fade-up">
+    
+        <div class="row mt-5">
+    
+          <div class="col-lg-4">
+            <div class="info">
+              <div class="address">
+                <i class="bi bi-geo-alt"></i>
+                <h4>LOCALISATION :</h4>
+                <p>
+                  DJIBOUTI, DJIBOUTI
+                </p>
+              </div>
+    
+              <div class="open-hours">
+                <i class="bi bi-clock"></i>
+                <h4>LES HEURES OUVERTES :</h4>
+                <p>
+                  DIMANCHE-JEUDI:<br>
+                  07H-00H
+                </p>
+              </div>
+    
+              <div class="email">
+                <i class="bi bi-envelope"></i>
+                <h4>EMAIL :</h4>
+                <p>resto@gmail.com</p>
+              </div>
+    
+              <div class="phone">
+                <i class="bi bi-phone"></i>
+                <h4>Numéro de Téléphone :</h4>
+                <p>+25377481632</p>
+              </div>
+    
+            </div>
+    
+          </div>
+    
+          <div class="col-lg-8 mt-5 mt-lg-0">
+            <form method="POST" action="{% url 'contact_invite' %}">
+              {% csrf_token %}
+              
+              <!-- Message de confirmation -->
+              {% if success %}
+              <div class="alert alert-success" style="color: white; background-color: green; padding: 10px; text-align: center; margin-bottom: 20px;">
+                {{ success }}
+              </div>
+              {% endif %}
+            
+              <div class="row">
+                <div class="col-md-6 form-group">
+                  <input type="text" name="name" class="form-control" id="name" placeholder="VOTRE NOM" required>
+                </div>
+                <div class="col-md-6 form-group mt-3 mt-md-0">
+                  <input type="email" class="form-control" name="email" id="email" placeholder="VOTRE EMAIL" required>
+                </div>
+              </div>
+              <div class="form-group mt-3">
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="SUJET" required>
+              </div>
+              <div class="form-group mt-3">
+                <textarea class="form-control" name="message" rows="8" placeholder="Message" required></textarea>
+              </div>
+            
+              <div class="text-center"><button type="submit">Envoyez Un Message</button></div>
+            </form>
+            
+    
+          </div>
+    
+        </div>
+    
+      </div>
+    </section><!-- End Contact Section -->
+    
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+  
+          <div class="col-lg-3 col-md-6">
+            <div class="footer-info">
+              <h3>RESTAURANTLY</h3>
+              <p>
+                DJIBOUTI<br>
+                DJIBOUTI<br><br>
+                <strong>Numéro de Téléphone:</strong> +25377481632<br>
+                <strong>Email:</strong> resto@gmail.com<br>
+              </p>
+              <div class="social-links mt-3">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+  
+          <!-- Ajoutez d'autres colonnes ici si nécessaire -->
+  
+        </div>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+  
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  {% load static %}
+<!-- Vendor JS Files -->
+<script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+<script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+<script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+<script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+<script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+<!-- Template Main JS File -->
+<script src="{% static 'assets/js/main.js' %}"></script>
+
+</body>
+
+</html>

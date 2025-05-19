@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Réservations</title>
+
+    <!-- Chargement du fichier CSS -->
+    <link rel="stylesheet" href="{% static 'css/Reservation.css' %}?v =2">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="profile">
+            <!-- Chargement de l'image -->
+            <img src="{% static 'img/chefss.jpg' %}" alt="Profil Administrateur" height="90%" width="90%">
+            <p style="font-size: 11px; text-align: center;">
+                {% if request.session.nom_utilisateur %}
+                {{ request.session.nom_utilisateur }}
+            {% else %}
+                Nom de l'Administration
+            {% endif %}
+        </p>
+        </div>
+        <ul>
+            <!-- Liens vers les autres pages avec url Django -->
+            <li><a href="{% url 'tableau_bord' %}">TABLEAU DE BORD</a></li>
+            <li><a href="{% url 'Analyse' %}">ANALYSE IA</a></li>
+            <li><a href="{% url 'menu' %}">MENU</a></li>
+            <li><a href="{% url 'EmployeADMIN' %}">EMPLOYE</a></li>
+            <li><a href="{% url 'reservation' %}">RESERVATION</a></li>
+            <li><a href="{% url 'deconnexion' %}">DECONNEXION</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <section id="reservations">
+            <h2>RÉSERVATION</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>NOM</th>
+                        <th>EMAIL</th>
+                        <th>DATE</th>
+                        <th>HEURE</th>
+                        <th>NBR DE PERS</th>
+                        <th>APPROUVÉ</th>
+                        <th>ANNULÉ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Boucle pour afficher les réservations -->
+                    {% for reservation in reservations %}
+                    <tr>
+                        <td>{{ reservation.nom }}</td>
+                        <td>{{ reservation.email }}</td>
+                        <td>{{ reservation.date_reservation }}</td>
+                        <td>{{ reservation.heure_reservation }}</td>
+                        <td>{{ reservation.nombre_personnes }}</td>
+                        <td>
+                            <!-- Formulaire pour approuver une réservation -->
+                            <form method="POST" action="{% url 'approuver_reservation_admin' reservation.id_reservation %}">
+                                {% csrf_token %}
+                                <button class="approuver" type="submit">APPROUVER</button>
+                            </form>
+                        </td>
+                        <td>
+                            <!-- Formulaire pour annuler une réservation -->
+                            <form method="POST" action="{% url 'annuler_reservation_admin' reservation.id_reservation %}">
+                                {% csrf_token %}
+                                <button class="annuler" type="submit">ANNULER</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <p>Aucun Reservation  trouvé.</p>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <script>
+        // Script pour gérer l'approbation et l'annulation des réservations
+        document.querySelectorAll('.approuver').forEach(button => {
+            button.addEventListener('click', function (event) {
+                event.preventDefault(); // Empêche le formulaire de soumettre immédiatement
+                let row = this.closest('tr');
+                let button = row.querySelector('.approuver');
+                button.innerText = 'APPROUVÉ';
+                button.disabled = true; // Désactive le bouton une fois cliqué
+
+                // Soumettre le formulaire après la modification du bouton
+                this.closest('form').submit();
+            });
+        });
+
+        document.querySelectorAll('.annuler').forEach(button => {
+            button.addEventListener('click', function (event) {
+                event.preventDefault(); // Empêche le formulaire de soumettre immédiatement
+                let row = this.closest('tr');
+                let button = row.querySelector('.annuler');
+                button.innerText = 'ANNULÉ';
+                button.disabled = true; // Désactive le bouton une fois cliqué
+
+                // Soumettre le formulaire après la modification du bouton
+                this.closest('form').submit();
+            });
+        });
+    </script>
+</body>
+</html>

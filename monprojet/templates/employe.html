@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interface Employé</title>
+    <link rel="stylesheet" href="{% static 'css/employe.css' %}? v=2">
+</head>
+<body>
+    <div class="container">
+        <!-- Côté gauche -->
+        <div class="sidebar">
+            <div class="profile">
+               
+                <img src="{% static 'img/chefs/chefs-1.jpg' %}" alt="Employé" class="profile-image">
+                <h2 class="nom-employe">
+                    {% if request.session.nom_utilisateur %}
+                        {{ request.session.nom_utilisateur }}
+                    {% else %}
+                        Nom Employé
+                    {% endif %}
+                </h2>
+            </div>
+
+            <div class="links">
+                <a href="{% url 'commandechef' %}">Affichage des commandes</a>
+                 <a href="{% url 'AjouteStocks' %}">Gestion  des stocks</a>
+                 
+                <a href="{% url 'stocks' %}">Affichage des stocks</a>
+                <a href="{% url 'deconnexion' %}">Déconnexion</a>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="accueil">
+                <!-- Le texte sera ajouté dynamiquement par le JS -->
+                <h1 id="dynamic-text"></h1>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'js/employe.js' %}"></script>
+</body>
+</html>

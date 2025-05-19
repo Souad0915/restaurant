@@ -1,0 +1,83 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion du Menu - Administrateur</title>
+    <link rel="stylesheet" href="{% static 'css/menu.css' %}?v =2">
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="profile">
+            <img src="{% static 'img/chefss.jpg' %}" alt="Profil Administrateur" height="90%" width="90%">
+            <p style="font-size: 11px; text-align: center;">
+                {% if request.session.nom_utilisateur %}
+                {{ request.session.nom_utilisateur }}
+            {% else %}
+                Nom de l'Administration
+            {% endif %}
+        </p>
+        </div>
+        
+        <ul>
+            <li><a href="{% url 'monadmin' %}">TABLEAU DE BORD</a></li>
+            <li><a href="{% url 'Analyse' %}">ANALYSE IA</a></li>
+            <li><a href="{% url 'menu_admin' %}">MENU</a></li>
+            <li><a href="{% url 'EmployeADMIN' %}">EMPLOYE</a></li>
+            <li><a href="{% url 'reservation' %}">RESERVATION</a></li>
+            <li><a href="{% url 'deconnexion' %}">DECONNEXION</a></li>
+        </ul>
+    </div>
+
+    <!-- Main content -->
+    <div class="main-content">
+        
+        <h2 style="font-size: 32px; color: #100f08;">Menu</h2>
+        <table id="menuTable" class="menu-table">
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Prix</th>
+            <th>Description</th>
+            <th>Image</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for menu in menus %}
+            <tr>
+                <td>{{ menu.nom_menu }}</td>
+                <td>{{ menu.prix }} FD</td>
+                <td>{{ menu.description }}</td>
+                <td>
+                    {% if menu.image %}
+                        <img src="{{ menu.image.url }}" alt="{{ menu.nom_menu }}" style="width: 80px; height: auto;">
+                    {% else %}
+                        <p>Aucune image</p>
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{% url 'modifier_menu' menu.id_menu %}"><button class="edit">Modifier</button></a>
+                    <a href="{% url 'supprimer_menu' menu.id_menu %}"><button class="delete">Supprimer</button></a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+        <!-- Image en bas à droite -->
+        <div class="image-bottom-right">
+            <a href="{% url 'ajouter_menu' %}"><img src="{% static 'img/ajoutebleu.png' %}" alt="Ajouter un plat" style="width: 80px;"></a>
+        </div>
+    </div>
+
+     
+    <script src="{% static 'js/menu.js' %}"></script>
+
+    
+</body>
+</html>

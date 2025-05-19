@@ -1,0 +1,181 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire de Commande</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            margin-top: 50px;
+            padding: 30px;
+            background-color: #fff;
+            max-width: 600px;
+            width: 90%; /* Pour s'adapter aux écrans plus petits */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            transform: translateY(30px);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .container:hover {
+            transform: translateY(0);
+        }
+
+        h2 {
+            text-align: center;
+            color: #ff6347;
+            text-decoration: underline;
+            margin-bottom: 20px;
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="email"],
+        input[type="tel"],
+        textarea {
+            width: calc(100% - 22px); /* Ajustement pour le padding et la bordure */
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box; /* Inclure le padding et la bordure dans la largeur */
+        }
+
+        textarea {
+            resize: vertical; /* Permettre le redimensionnement vertical */
+        }
+
+        button {
+            background-color: #ff6347;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #e0523b;
+        }
+
+        div {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Formulaire de Commande</h2>
+        <form method="post" action="{% url 'passer_commande' %}" id="order-form">
+            {% csrf_token %}
+            <div>
+                <label for="menu-name">Nom du Plat :</label>
+                <input type="text" id="menu-name" name="nom-menu" value="{{ name }}" readonly>
+            </div>
+            <div>
+                <label for="menu-price">Prix :</label>
+                <input type="text" id="menu-price" name="prix-menu" value="{{ price }}" readonly>
+            </div>
+            <div>
+                <label for="menu-description">Description :</label>
+                <textarea id="menu-description" name="menu-description" readonly>{{ description }}</textarea>
+            </div>
+            <div>
+                <label for="quantity">Quantité :</label>
+                <input type="number" id="quantity" name="quantité" min="1" value="1">
+            </div>
+            <div>
+                <label for="other-dish">Si vous souhaitez un autre plat, entrez le nom ici :</label>
+                <input type="text" id="other-dish" name="autre-plat" placeholder="Nom du plat supplémentaire">
+            </div>
+            <div>
+                <label for="other-dish-quantity">Quantité pour ce plat supplémentaire :</label>
+                <input type="number" id="other-dish-quantity" name="autre-quantité-de-plat" min="1" value="1">
+            </div>
+            <div id="total-price-display" style="font-weight: bold; margin-top: 10px;">
+                Prix Total : {{ price }} FDJ
+            </div>
+            <div>
+                <label for="nom-client">Votre Nom :</label>
+                <input type="text" id="nom-client" name="nom-client" required>
+            </div>
+            <div>
+                <label for="email">Email :</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div>
+                <label for="téléphone">Numéro de téléphone :</label>
+                <input type="tel" id="téléphone" name="téléphone" required>
+            </div>
+            <div>
+                <button type="submit">Commandez</button>
+            </div>
+            {% if confirmation_message %}
+                <div style="color: green; font-weight: bold; margin-top: 20px;">
+                    {{ confirmation_message }}
+                </div>
+            {% endif %}
+        </form>
+    </div>
+    <script>
+        function calculateTotalPrice() {
+            const mainDishPriceStr = document.getElementById('menu-price').value;
+            const quantity = parseInt(document.getElementById('quantity').value) || 1;
+            const otherDishName = document.getElementById('other-dish').value.trim();
+            const otherDishQuantity = parseInt(document.getElementById('other-dish-quantity').value) || 0;
+            const totalPriceDisplay = document.getElementById('total-price-display');
+            let totalPrice = parseFloat(mainDishPriceStr) * quantity;
+            totalPriceDisplay.textContent = `Prix Total : ${totalPrice.toFixed(0)} FDJ`;
+
+            // Vous pourriez ajouter ici une logique pour récupérer le prix du plat supplémentaire
+            // si vous avez une liste des prix côté client ou si vous faites une requête AJAX.
+            // Pour l'instant, sans cette information, le prix supplémentaire n'est pas inclus.
+        }
+
+        document.getElementById('quantity').addEventListener('input', calculateTotalPrice);
+        document.getElementById('other-dish-quantity').addEventListener('input', calculateTotalPrice);
+
+        // Initial calculation on load
+        calculateTotalPrice();
+
+        // Gestion de l'envoi du formulaire (vous pouvez modifier ceci selon vos besoins)
+        document.getElementById('order-form').addEventListener('submit', function (event) {
+            // event.preventDefault(); // Décommentez pour empêcher la soumission standard pour le moment
+            const formData = new FormData(this);
+            const formDataObj = {};
+            formData.forEach((value, key) => {
+                formDataObj[key] = value;
+            });
+            console.log("Commande soumise :", formDataObj);
+            alert("Votre commande a été soumise avec succès ! (Le prix total affiché est indicatif sans le plat supplémentaire)");
+            // Si vous aviez empêché la soumission, vous pourriez la déclencher ici après un traitement JS.
+            // this.submit();
+        });
+    </script>
+</body>
+</html>

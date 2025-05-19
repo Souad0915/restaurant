@@ -1,0 +1,112 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    background-color: #1a1a1a;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../static/exterior.jpg'); /* Remplacez par votre image */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* Sombre le fond */
+body::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Effet très sombre sur l'image */
+    z-index: -1;
+}
+
+/* Conteneur du formulaire */
+.form-container {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.8);
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Titre du formulaire */
+h2 {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 25px;
+}
+
+/* Labels */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #ccc;
+}
+
+/* Champs de saisie */
+input[type="email"], input[type="password"], input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #444;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+    font-size: 16px;
+}
+
+input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focus {
+    border-color: #ff6600;
+    outline: none;
+}
+
+/* Placeholder personnalisé */
+input[type="email"]::placeholder,
+input[type="password"]::placeholder,
+input[type="text"]::placeholder {
+    color: #ccc;
+    font-style: italic;
+}
+
+/* Bouton de soumission */
+input[type="submit"] {
+    display: block;
+    margin: 0 auto;
+    width: 50%;
+    padding: 10px; /* Réduit la taille du bouton */
+    background-color: #ff6600; /* Orange */
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 16px; /* Taille réduite */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #e65c00; /* Orange plus foncé au survol */
+}
+
+/* Lien d'inscription */
+.signup-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.signup-link a {
+    color: #ff6600;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+}

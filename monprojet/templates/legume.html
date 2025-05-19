@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stocks des Légumes</title>
+    <link rel="stylesheet" href="{% static 'css/Fruits.css' %}? v=2">
+    <style>
+        /* Styles généraux pour les boutons */
+button {
+    padding: 10px 15px;
+    margin: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+/* Boutons d'incrémentation (+) */
+button.increment {
+    background-color: #8a760f;
+    color: white;
+}
+
+button.increment:hover {
+    background-color: #8a760f;
+}
+
+/* Boutons de décrémentation (-) */
+button.decrement {
+    background-color: #8a760f;
+    color: white;
+}
+
+button.decrement:hover {
+    background-color: #8a760f;
+}
+
+/* Boutons de confirmation */
+button.confirm {
+    background-color: green;
+    color: white;
+}
+
+button.confirm:hover {
+    background-color: green;
+}
+
+/* Boutons d'annulation */
+button.cancel {
+    background-color: red;
+    color: white;
+}
+
+button.cancel:hover {
+    background-color: red;
+}
+
+/* Bouton retour */
+button.back-button {
+    padding: 10px 20px;
+    background-color: green;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+button.back-button:hover {
+    background-color: green;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Contenu principal sans la barre latérale -->
+        <div class="main-content">
+            <h1 class="page-title">Stocks des Légumes</h1>
+            <table class="stocks-table">
+                <thead>
+                    <tr>
+                        <th>Nom du Légume</th>
+                        <th>Quantité</th>
+                        <th>État du Stock</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for stock in stocks %}
+                    <tr>
+                        <td>{{ stock.nom }}</td>
+                        <td class="quantity">{{ stock.quantite }}</td>
+                        <td><span class="stock-status {% if stock.etat == 'suffisant' %}green{% else %}red{% endif %}"></span></td>
+                        <td>
+                            <button class="increment">+</button>
+                            <button class="decrement">-</button>
+                            <button class="confirm" style="display:none;">Confirmer</button>
+                            <button class="cancel" style="display:none;">Annuler</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Bouton pour revenir à la page principale des stocks -->
+        <div class="back-button">
+            <a href="{% url 'stocks' %}">
+                <button>Retour aux Stocks</button>
+            </a>
+        </div>
+    </div>
+
+    <script src="{% static 'js/fruits.js' %}"></script>
+</body>
+</html>

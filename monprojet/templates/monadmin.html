@@ -1,0 +1,198 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interface Administrateur</title>
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}? v=2">
+    
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment"></script>
+<script>
+    // Stockez les données globalement
+    window.dashboardData = JSON.parse('{{ data_json|escapejs }}');
+</script>
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="profile">
+            <img src="{% static 'img/chefss.jpg' %}" alt="Profil Administrateur" height="90%" width="90%">
+            <p style="font-size: 11px; text-align: center;">
+                {% if request.session.nom_utilisateur %}
+                    {{ request.session.nom_utilisateur }}
+                {% else %}
+                    Nom de l'Administration
+                {% endif %}
+            </p>
+        </div>
+
+        <ul>
+            <li><a href="{% url 'tableau_bord' %}">TABLEAU DE BORD</a></li>
+            <li><a href="{% url 'Analyse' %}">ANALYSE</a></li>
+            <li><a href="/menu/">MENU</a></li>
+            <li><a href="{% url 'EmployeADMIN' %}">EMPLOYÉ</a></li>
+            <li><a href="{% url 'reservation' %}">RÉSERVATION</a></li>
+            <li><a href="{% url 'deconnexion' %}">DÉCONNEXION</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <div class="dashboard-container">
+            <h1 style="font-size: 22px;">TABLEAU DE BORD</h1>
+
+            <div class="dashboard-items">
+                <div class="item">
+                    <h2>Commandes Aujourd'hui</h2>
+                    <p>{{ commandes_aujourdhui }}</p>
+                </div>
+                <div class="item">
+                    <h2>Réservations à Venir</h2>
+                    <p>{{ reservations_a_venir }}</p>
+                </div>
+                <div class="item">
+                    <h2>Employés Actifs</h2>
+                    <p>{{ employes_actifs }}</p>
+                </div>
+               
+            </div>
+
+            <div class="charts">
+                <div class="chart-container">
+                    <h3>Graphique en Barre</h3>
+                    <canvas id="bar-chart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3>Graphique Circulaire</h3>
+                    <canvas id="pie-chart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Ajoutez cette partie dans votre head -->
+
+<!-- Dans votre body, remplacez le script par : -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Vérifiez que les données sont bien chargées
+        if (!window.dashboardData) {
+            console.error('Données non chargées');
+            return;
+        }
+
+        // Création des graphiques
+        function initCharts() {
+            // Définir les couleurs du thème (inspirées de votre interface)
+            const themeColors = {
+                primary: '#8B4513',       // Marron (pour les barres)
+                primary_light: '#A0522D', // Marron plus clair (pour les bordures/accents)
+                secondary: '#D39E00',     // Or (pour les éléments secondaires)
+                text_dark: '#222222',       // Noir ou très foncé pour le texte
+                gridlines: 'rgba(0, 0, 0, 0.1)', // Gris très clair pour les lignes
+                pie_chart_slices: [
+                    '#FFDB58',  // Jaune clair
+                    '#F4A460',  // Terre de Sienne
+                    '#B8860B'   // Kaki foncé
+                ]
+            };
+
+            // Graphique en barres
+            const barCtx = document.getElementById('bar-chart');
+            if (barCtx) {
+                new Chart(barCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: window.dashboardData.labels_jour,
+                        datasets: [{
+                            label: 'Commandes par jour',
+                            data: window.dashboardData.data_commandes,
+                            backgroundColor: themeColors.primary, // Marron pour les barres
+                            borderColor: themeColors.primary_light, // Marron clair pour la bordure
+                            borderWidth: 1,
+                            color: themeColors.text_dark, // Noir pour le texte
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        animation: {
+                            duration: 1000
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                grid: {
+                                    color: themeColors.gridlines // Gris clair pour les lignes de la grille
+                                },
+                                ticks: {
+                                    color: themeColors.text_dark // Noir pour le texte des ticks
+                                }
+                            },
+                            x: {
+                                grid: {
+                                    color: themeColors.gridlines // Gris clair pour les lignes de la grille
+                                },
+                                ticks: {
+                                    color: themeColors.text_dark // Noir pour le texte des ticks
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                labels: {
+                                    color: themeColors.text_dark // Noir pour la légende
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Graphique circulaire
+            const pieCtx = document.getElementById('pie-chart');
+            if (pieCtx) {
+                new Chart(pieCtx, {
+                    type: 'pie',
+                    data: {
+                        labels: ['Matin', 'Midi', 'Soir'],
+                        datasets: [{
+                            data: window.dashboardData.data_reservations,
+                            backgroundColor: [
+                                themeColors.pie_chart_slices[0],
+                                themeColors.pie_chart_slices[1],
+                                themeColors.pie_chart_slices[2]
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        animation: {
+                            duration: 1000
+                        },
+                        plugins: {
+                            legend: {
+                                labels: {
+                                    color: themeColors.text_dark // Noir pour la légende
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        // Initialisation immédiate + fallback
+        initCharts();
+
+        // Fallback au cas où (optionnel)
+        setTimeout(initCharts, 500);
+    });
+</script>
+
+</body>
+
+</html>

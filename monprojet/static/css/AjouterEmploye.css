@@ -1,0 +1,164 @@
+/* Style global du body */
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7f6;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Section pour le formulaire d'ajout */
+#ajouter-employe {
+    background-color: #ffffff;
+    padding: 30px;
+    margin-bottom: 40px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    margin-top: 40px;
+}
+
+/* Titre du formulaire */
+#ajouter-employe h2 {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Style pour les labels du formulaire */
+form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #555;
+    font-size: 16px;
+}
+
+/* Style pour les champs du formulaire */
+form input, form select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+form input:focus, form select:focus {
+    border-color: #8a760f;
+    outline: none;
+}
+
+/* Bouton du formulaire */
+form button {
+    background-color: #8a760f;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #cbab0c;
+}
+
+/* Section pour afficher la liste des employés ajoutés */
+#liste-employes {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+}
+
+#liste-employes h2 {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Conteneur d'employés */
+#employe-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Style pour chaque employé */
+.employe {
+    background-color: #f9f9f9;
+    padding: 20px;
+    width: 250px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    border: 1px solid #ddd;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.employe:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px #6e5d08;
+}
+
+.employe p {
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 16px;
+}
+
+.employe button {
+    background-color: #8a760f;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 8px 0;
+    transition: background-color 0.3s ease;
+}
+
+.employe button.edit {
+    background-color: #f39c12;
+}
+
+.employe button.delete {
+    background-color: #e74c3c;
+}
+
+.employe button:hover {
+    background-color:#8a760f;
+}
+
+/* Styles responsives */
+@media (max-width: 600px) {
+    #ajouter-employe, #liste-employes {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .employe {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .employe button {
+        font-size: 16px;
+        padding: 10px 15px;
+    }
+}

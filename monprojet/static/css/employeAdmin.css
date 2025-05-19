@@ -1,0 +1,138 @@
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    background-color: #f4f4f4;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Sidebar styles */
+.sidebar {
+    width: 220px; /* Réduit la largeur de la sidebar */
+    background-color: #554704;
+    color: white;
+    height: 100vh;
+    padding: 15px; /* Réduit le padding pour la sidebar */
+    position: fixed; /* Sidebar reste fixe */
+    top: 0;
+    left: 0;
+}
+
+/* Menu de navigation */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    padding: 15px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    display: block;
+}
+
+ul li:hover {
+    background-color: #554704;
+}
+
+/* Main content (container principal) */
+.content {
+    flex-grow: 1;
+    padding: 20px;
+    margin-left: 240px; /* Ajout d'une marge à gauche pour compenser la sidebar */
+}
+
+/* Styles pour le titre des sections */
+h2 {
+    text-align: center;
+}
+
+/* Style du tableau */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 6px; /* Réduit l'espace à l'intérieur des cases */
+    border: 1px solid #ddd;
+    color: #000000;
+    text-align: center;
+    font-size: 12px; /* Réduit la taille du texte */
+    line-height: 1.2; /* Réduit la hauteur des lignes */
+}
+
+th {
+    background-color: #554704;
+    color: white;
+    font-size: 14px; /* Réduit la taille de la police des en-têtes */
+}
+
+td {
+    background-color: #f9f9f9;
+}
+
+/* Styles pour les statuts "actif" et "inactif" */
+.actif {
+    color: green;
+    font-weight: bold;
+}
+
+.inactif {
+    color: red;
+    font-weight: bold;
+}
+
+.approuve {
+    color: green;
+}
+
+.annule {
+    color: red;
+}
+
+/* Styles pour les boutons de modification et de suppression */
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+button.delete {
+    color: red;
+}
+
+button.edit {
+    color: yellow;
+}
+
+.bottom-image {
+    position: fixed; /* Fixe l'image par rapport à la fenêtre */
+    bottom: 10px; /* Distance du bas de la page */
+    right: 10px; /* Distance de la droite de la page */
+    width: 60px; /* Largeur de l'image (ajuste à ta convenance) */
+    height: auto; /* Maintient les proportions de l'image */
+}
+
+#clickable-image {
+    width: 100%; /* L'image occupera toute la largeur du container .bottom-image */
+    height: auto; /* Proportions respectées */
+    cursor: pointer; /* Change le curseur en forme de main pour indiquer un clic */
+}
+
+
+

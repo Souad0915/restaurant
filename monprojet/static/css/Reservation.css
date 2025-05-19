@@ -1,0 +1,217 @@
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    background-color: #f4f4f4;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Sidebar styles */
+.sidebar {
+    width: 220px;
+    background-color: #554704;
+    color: white;
+    height: 100vh;
+    padding: 15px;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+/* Menu de navigation */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    padding: 15px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    display: block;
+}
+
+ul li:hover {
+    background-color: #554704;
+}
+
+/* Contenu principal */
+.content {
+    margin-left: 250px;
+    padding: 20px;
+    overflow: hidden;
+}
+
+/* Titre */
+h2 {
+    text-align: left;
+    color: #2c3e50;
+    margin-bottom: 25px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Style du tableau */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-left: 0;
+    margin-right: 0;
+    display: table;
+    max-width: 100%;
+    border: 1px solid #ddd; /* Ajoute une bordure autour du tableau */
+}
+
+thead {
+    display: table-header-group;
+}
+
+tbody {
+    display: table-row-group;
+}
+
+th, td {
+    padding: 12px 10px;
+    border-bottom: 1px solid #ddd;
+    color: #333;
+    text-align: left;
+    font-size: 14px;
+    border-right: 1px solid #ddd; /* Ajoute une bordure à droite de chaque cellule */
+}
+
+th {
+    background-color: #554704;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+td {
+    background-color: #f9f9f9;
+    vertical-align: middle;
+}
+
+/* Colonnes approuvé et annulé */
+.approuve, .annule {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.approuve {
+    color: #27ae60;
+}
+
+.annule {
+    color: #e74c3c;
+}
+
+/* Boutons d'action */
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+    padding: 5px 8px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+button.approuver {
+    background-color: #27ae60;
+    color: white;
+}
+
+button.approuver:hover {
+    background-color: #2ecc71;
+}
+
+button.annuler {
+    background-color: #e74c3c;
+    color: white;
+}
+
+button.annuler:hover {
+    background-color: #c0392b;
+}
+
+button.delete {
+    color: #e74c3c;
+}
+
+button.edit {
+    color: #f39c12;
+}
+
+/* Style des boutons lorsque l'élément est désactivé */
+button[disabled] {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+}
+
+/* Styles responsives */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+    }
+
+    .content {
+        margin-left: 200px;
+    }
+
+    table {
+        font-size: 10px;
+    }
+
+    th, td {
+        padding: 6px;
+    }
+
+    button {
+        font-size: 10px;
+        padding: 4px 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .content {
+        margin-left: 0;
+    }
+
+    table {
+        font-size: 9px;
+        width: 100%;
+    }
+    th, td{
+       padding: 5px;
+    }
+
+    button {
+        font-size: 9px;
+        padding: 3px 5px;
+    }
+}
+
+/* Enlève la bordure à droite de la dernière colonne */
+.table td:last-child,
+.table th:last-child {
+    border-right: none;
+}

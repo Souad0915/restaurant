@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supprimer Employé</title>
+    <link rel="stylesheet" href="{% static 'css/SuppressionEmploye.css' %}">
+</head>
+<body>
+    <div class="content">
+        <!-- Formulaire de suppression d'employé -->
+        <section id="supprimer-employe">
+            <h2>SUPPRIMER UN EMPLOYÉ</h2>
+            <p>Êtes-vous sûr de vouloir supprimer cet employé ? Cette action est irréversible.</p>
+            <form id="form-suppression" method="POST">
+                {% csrf_token %}
+                <label for="nom-supprimer">Nom de l'employé à supprimer</label>
+                <input type="text" id="nom-supprimer" name="nom-supprimer" value="{{ employe.nom }}" readonly>
+
+                <label for="fonction-supprimer">Fonction de l'employé</label>
+                <input type="text" id="fonction-supprimer" name="fonction-supprimer" value="{{ employe.fonction }}" readonly>
+
+                <button type="submit" class="delete">Supprimer l'Employé</button>
+            </form>
+        </section>
+    </div>
+</body>
+</html>

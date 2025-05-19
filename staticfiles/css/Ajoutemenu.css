@@ -1,0 +1,68 @@
+/* Style global */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Conteneur du formulaire */
+.form-container {
+    background-color: #fff;
+    padding: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.form-container h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #9f8a1d;
+    text-decoration: underline;
+}
+
+/* Style des champs de formulaire */
+.form-container input, .form-container textarea, .form-container button {
+    width: 100%;
+    padding: 12px;
+    margin: 12px 0;
+    border: 1px solid #988319;
+    font-size: 14px;
+    border-radius: 8px;
+}
+
+.form-container input:focus, .form-container textarea:focus {
+    border-color: #28a745;
+    outline: none;
+}
+
+/* Style spécifique pour le champ de texte */
+.form-container textarea {
+    resize: vertical;
+    height: 120px;
+}
+
+/* Style du bouton */
+.form-container button {
+    background-color: #8a760f;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    width: 130px;
+    text-align: center;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+.form-container button:hover {
+    background-color: #a58f21;
+}

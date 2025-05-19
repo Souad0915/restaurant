@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion</title>
+    <link rel="stylesheet" href="{% static 'css/connexion.css' %}">
+    <style>
+        .message-container {
+            margin: 15px 0;
+        }
+        .alert {
+            padding: 12px 15px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        .alert-error {
+            background-color: #fdecea;
+            color: #d32f2f;
+            border: 1px solid #f5c2c7;
+        }
+        .form-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        .form-container input[type="email"],
+        .form-container input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2 style="text-align: center; margin-bottom: 20px;">Connexion</h2>
+        
+        <div class="message-container">
+            {% for message in messages %}
+                <div class="alert alert-{% if message.tags %}{{ message.tags }}{% else %}error{% endif %}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+
+        <form method="POST" autocomplete="off">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="email">Adresse Email</label>
+                <input type="email" id="email" name="email" required 
+                       placeholder="Saisissez votre email" value="{{ request.POST.email }}">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Mot de Passe</label>
+               
+            <input type="password" id="password" name="password" required minlength="8"
+       placeholder="Saisissez votre mot de passe">
+            </div>
+
+            <input type="submit" value="Se Connecter">
+        </form>
+
+        <div class="signup-link">
+            <p>Vous n'avez pas de compte ? <a href="{% url 'inscription' %}">Inscrivez-vous ici</a></p>
+            <p><a href="{% url 'connexion' %}">Mot de passe oublié ?</a></p>
+        </div>
+    </div>
+</body>
+</html>

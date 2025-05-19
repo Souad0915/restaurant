@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurantly - Accueil</title>
+    <link rel="stylesheet" href="{% static 'acceuil.css' %}">
+    <style>
+
+.options-container {
+    display: flex;
+    justify-content: center; /* Centre horizontalement */
+    align-items: center; /* Centre verticalement */
+    gap: 20px; /* Espace entre les boutons */
+    margin-top: 30px; /* Espace au-dessus des boutons */
+}
+
+/* Vos styles existants pour .button-marron peuvent rester inchangés */
+.button-marron {
+    background: linear-gradient(45deg, #5D4037, #795548, #A1887F);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.button-marron:hover {
+    background: linear-gradient(45deg, #4E342E, #6D4C41, #8D6E63);
+    transform: scale(1.05);
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.button-marron:active {
+    transform: scale(0.98);
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <h1>BIENVENUE SUR RESTAURANTY</h1>
+            <p class="accroche">Des saveurs authentiques, une expérience unique.</p>
+            <div class="options-container">
+                <button class="button-marron" onclick="window.location.href='{% url 'connexion' %}'">Je me connecte</button>
+                <button class="button-marron" onclick="window.location.href='{% url 'ajouter_invite' %}'">Je suis invité</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

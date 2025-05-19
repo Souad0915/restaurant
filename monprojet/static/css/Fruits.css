@@ -1,0 +1,133 @@
+/* Réinitialisation des marges et du padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Container principal */
+.container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Contenu principal */
+.main-content {
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(50, 47, 47, 0.1);
+}
+
+/* Titre de la page */
+.page-title {
+    text-align: center;
+    font-size: 2rem;
+    /* text-decoration: underline; Suppression du soulignement */
+    color: #554704;
+    margin-bottom: 20px;
+}
+
+/* Style du tableau des stocks */
+/* Style général pour le tableau */
+.stocks-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    /* color: white; Suppression de la couleur blanche par défaut pour le tableau */
+}
+
+/* Ajoute une bordure à droite de chaque cellule sauf la dernière */
+.stocks-table td {
+    padding: 10px;
+    border-right: 2px solid #ccc; /* Ligne entre les colonnes */
+    color: black; /* Ajout de la couleur du texte en noir pour les cellules */
+}
+
+/* Enlever la bordure à droite de la dernière cellule de chaque ligne */
+.stocks-table td:last-child {
+    border-right: none;
+}
+
+/* Style des en-têtes */
+.stocks-table th {
+    background-color: #554704;
+    padding: 10px;
+    text-align: left;
+    font-weight: bold;
+    border-bottom: 2px solid #554704;
+    color: white; /* Le texte des en-têtes reste blanc */
+}
+
+/* Style des lignes du tableau */
+.stocks-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #554704;
+}
+
+/* Indicateur d'état du stock */
+.stock-status {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+/* Couleurs des états du stock */
+.stock-status.green {
+    background-color: #28a745;
+}
+
+.stock-status.red {
+    background-color: #dc3545;
+}
+
+/* Pour les petites résolutions (tablette ou mobile) */
+@media screen and (max-width: 900px) {
+    .main-content {
+        padding: 15px;
+    }
+
+    .stocks-table th, .stocks-table td {
+        padding: 8px;
+    }
+}
+
+/* Style pour le bouton en bas */
+.back-button {
+    text-align: center;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%); /* Pour centrer le bouton horizontalement */
+    z-index: 10;
+}
+
+.back-button a {
+    text-decoration: none;
+}
+
+.back-button button {
+    background-color: #554704;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.back-button button:hover {
+    background-color: #cdac0c;
+    transform: scale(1.05);
+}
+
+.back-button button:focus {
+    outline: none;
+}

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Commandes</title>
+    <link rel="stylesheet" href="{% static 'css/Serveur.css' %}? v=2">
+</head>
+<style>
+    .action-btn {
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Transition pour un effet doux */
+}
+
+.action-btn:hover {
+    transform: translateY(-2px); /* Légère élévation au survol */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre légère au survol */
+}
+
+.action-btn.button-lift {
+    transform: translateY(-4px); /* Élévation plus importante au clic */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Ombre plus prononcée au clic */
+}
+</style>
+<body>
+
+<div class="main-content">
+    <h2>GESTION DES COMMANDES - SERVEUR</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>NUMÉRO</th>
+                <th>Nom du Client</th>
+                <th>Email</th>
+                <th>Nom du Plat</th>
+                <th>NOMBRE DES FOIS</th>
+                <th>PRIX</th>
+                <th>ÉTAT DE LA COMMANDE</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            {% for commande in commandes %}
+            <tr>
+                <td>{{ commande.id }}</td>
+                <td>{{ commande.customer_name }}</td>
+                <td>{{ commande.email }}</td>
+                <td>
+                    {{ commande.menu_name }}
+                    {% if commande.other_dish %}
+                        <br>+ {{ commande.other_dish }}
+                    {% endif %}
+                </td>
+                <td>
+                    {{ commande.quantity }}
+                    {% if commande.other_dish_quantity %}
+                        <br>+ {{ commande.other_dish_quantity }}
+                    {% endif %}
+                </td>
+                <td>{{ commande.menu_total_price }} FDJ</td>
+                <td class="order-state">{{ commande.status }}</td>
+               
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="back-button">
+        <a href="{% url 'connexion' %}">
+            <button>Retour à l'accueil</button>
+        </a>
+    </div>
+</div>
+
+<script>
+    // Fonction pour mettre à jour le statut de la commande via AJAX
+    function updateCommandeStatus(commandeId, newStatus) {
+        fetch(`/update_commande_status/${commandeId}/${newStatus}/`, {
+            method: 'GET',
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'Content-Type': 'application/json',
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Trouver la ligne correspondante
+                const row = document.querySelector(`tr:has(button[onclick*="${commandeId}"])`);
+                if (row) {
+                    // Mettre à jour le statut dans la table
+                    const statusCell = row.querySelector('.order-state');
+                    statusCell.textContent = newStatus;
+                    
+                    // Mettre à jour la classe CSS selon le statut
+                    statusCell.className = 'order-state ';
+                    if (newStatus === 'Servie') {
+                        statusCell.classList.add('served');
+                    } else if (newStatus === 'Annulé') {
+                        statusCell.classList.add('canceled');
+                    } else if (newStatus === 'Approuvé') {
+                        statusCell.classList.add('approved');
+                    } else {
+                        statusCell.classList.add('pending');
+                    }
+                    
+                    // Désactiver les boutons après action
+                    const buttons = row.querySelectorAll('.action-btn');
+                    buttons.forEach(btn => {
+                        btn.disabled = true;
+                        btn.style.opacity = '0.6';
+                    });
+                }
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Une erreur est survenue lors de la mise à jour du statut.');
+        });
+    }
+    </script>
+    
+<script src="{% static 'js/Serveur.js' %}"></script>
+</body>
+</html>

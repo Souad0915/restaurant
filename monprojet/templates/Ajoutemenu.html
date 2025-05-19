@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter un Plat</title>
+    <link rel="stylesheet" href="{% static 'css/Ajoutemenu.css' %}? v=2">
+</head>
+
+<body>
+
+    <div class="form-container">
+        <h2>Item du menu</h2>
+            
+        <form id="menuForm" action="{% url 'ajouter_menu' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="text" id="dishName" name="nom_menu" placeholder="Nom" required><br>
+            <textarea id="dishDescription" name="description" placeholder="Description" required></textarea><br>
+            <input type="number" id="dishPrice" name="prix" placeholder="Prix" required><br>
+            <input type="file" id="dishImage" name="image" accept="image/*" required><br>
+
+            <!-- Champ Categorie -->
+            <label for="dishCategory">Catégorie:</label>
+            <select id="dishCategory" name="categorie" required>
+                <option value="filter-starters">Entrées</option>
+                <option value="filter-salads">Salades</option>
+                <option value="filter-specialty">Spécialités</option>
+            </select><br>
+
+            <button type="submit">Ajouter</button>
+        </form>
+    </div>
+    
+</body>
+
+</html>
