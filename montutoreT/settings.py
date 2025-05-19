@@ -91,17 +91,25 @@ WSGI_APPLICATION = 'montutoreT.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-# Configuration de la base de données
+import os
+import dj_database_url
+
+# Production
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
+ALLOWED_HOSTS = ['votre-app.onrender.com', 'localhost', '127.0.0.1']
+
+# Database
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'restaurant_db',       # Nom de la DB Render
-        'USER': os.getenv('DB_USER'),  # Utilisateur Render
-        'PASSWORD': os.getenv('DB_PASSWORD'),  # Mot de passe Render
-        'HOST': 'dpg-xxx-xxx.render.com',  # Host Render
-        'PORT': '5432',               # Port Render
-    }
+    'default': dj_database_url.config(
+        default=os.getenv('DATABASE_URL'),
+        conn_max_age=600,
+        conn_health_checks=True
+    )
 }
+
+# Static files
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 

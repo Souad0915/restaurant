@@ -1,6 +1,7 @@
 services:
   - type: web
-    name: your-service-name
+    name: montutoreT
     env: python
     buildCommand: "pip install -r requirements.txt && python manage.py collectstatic --noinput"
-    startCommand: "/opt/render/project/src/.venv/bin/gunicorn monprojet.wsgi --bind 0.0.0.0:$PORT"
+    startCommand: "/opt/render/project/src/.venv/bin/gunicorn montutoreT.wsgi:application --bind 0.0.0.0:$PORT"
+    pythonVersion: "3.9.13"
