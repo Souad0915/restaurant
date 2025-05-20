@@ -96,7 +96,7 @@ import dj_database_url
 
 # Production
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
-ALLOWED_HOSTS = ['restaurant-10-dxaw.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['monprojet.onrender.com', 'localhost', '127.0.0.1']
 
 
 # Database
