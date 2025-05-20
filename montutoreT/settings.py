@@ -181,8 +181,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 STATIC_URL = '/static/'  # pour l'URL de base des fichiers statiques
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # Assurez-vous que ce chemin est correct
-
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # Assurez-vous que ce chemin est correct
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'monprojet/static'),  # adapte le chemin
+]
 CSRF_USE_SESSIONS = True
 
 LOGGING = {
