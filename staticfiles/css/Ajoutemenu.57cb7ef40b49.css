@@ -1,0 +1,79 @@
+/* Style global */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Conteneur du formulaire */
+.form-container {
+    background-color: #fff;
+    padding: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.form-container h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #9f8a1d;
+    text-decoration: underline;
+}
+
+/* Style des champs de formulaire */
+.form-container input,
+.form-container textarea,
+.form-container select {
+    width: 100%;
+    padding: 12px;
+    margin: 12px 0;
+    border: 1px solid #988319;
+    font-size: 14px;
+    border-radius: 8px;
+    box-sizing: border-box; /* Important pour que padding et border n'affectent pas la largeur totale */
+    height: auto; /* Réinitialise la hauteur spécifique du select */
+}
+
+/* Style spécifique pour le champ de texte */
+.form-container textarea {
+    resize: vertical;
+    height: 120px;
+}
+
+/* Style du bouton */
+.form-container button {
+    background-color: #8a760f;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    width: 100%; /* Prend toute la largeur pour s'aligner avec les autres champs */
+    text-align: center;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+    padding: 12px; /* Réapplique le padding pour le bouton */
+    box-sizing: border-box; /* Assure que le padding est inclus dans la largeur */
+    height: auto; /* Réinitialise toute hauteur spécifique */
+}
+
+.form-container button:hover {
+    background-color: #a58f21;
+}
+
+/* Style pour le label de la catégorie pour un meilleur alignement (optionnel) */
+.form-container label[for="dishCategory"] {
+    display: block; /* Met le label sur une ligne séparée */
+    margin-bottom: 5px;
+    text-align: left; /* Aligne le texte du label à gauche */
+    color: #333; /* Couleur du texte du label */
+    font-size: 14px;
+}

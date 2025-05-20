@@ -1,0 +1,30 @@
+#editFormContainer {
+    background-color: #f9f9f9 !important;
+    padding: 20px !important;
+    border-radius: 5px !important;
+    border: 1px solid #ddd !important;
+    width: 300px !important;
+    margin: 20px auto !important;
+    display: block !important; /* Passé à 'block' pour s'afficher */
+}
+
+#editFormContainer input {
+    width: 100% !important;
+    padding: 8px !important;
+    margin: 5px 0 !important;
+    border: 1px solid #ccc !important;
+    border-radius: 4px !important;
+}
+
+#editFormContainer button {
+    background-color: #8a760f !important;
+    color: white !important;
+    padding: 10px !important;
+    border: none !important;
+    border-radius: 4px !important;
+    cursor: pointer !important;
+}
+
+#editFormContainer button:hover {
+    background-color: #6b5809 !important;
+}

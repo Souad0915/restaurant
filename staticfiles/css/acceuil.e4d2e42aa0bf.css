@@ -1,0 +1,97 @@
+/* Réinitialisation des marges et du padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Body avec image de fond */
+body {
+    background-image: url("../img/gallery-3.26ad6ab2b629.jpg"); /* Remplacez par le chemin de votre image */
+    background-size: cover;  /* L'image couvre toute la page */
+   
+    background-attachment: fixed; /* L'image reste fixe lors du défilement */
+    height: 100vh; /* Remplir toute la hauteur de la page */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;  /* Le texte sera en blanc pour contraster avec l'image */
+    text-align: center;
+    padding: 20px;
+    position: relative; /* Nécessaire pour positionner l'overlay */
+}
+
+/* Overlay sombre sur l'image de fond */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Couleur sombre avec transparence */
+    z-index: -1; /* Placer l'overlay derrière le contenu */
+}
+
+
+
+/* Titre principal */
+h1 {
+    color: #d6aa0b;
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+/* Sous-titre / Accroche */
+.accroche {
+    font-size: 1.2rem;
+    color: #d6aa0b;
+    margin-bottom: 40px;
+}
+
+/* Style des options (checkboxes) */
+.options {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap; /* Assure que les éléments se mettent en ligne selon la taille de l'écran */
+}
+
+/* Option (checkbox) */
+.option {
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    color: #d6aa0b;
+}
+
+/* Style des cases à cocher */
+.option input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+/* Effet au survol des cases à cocher */
+.option:hover {
+    color: #d28a05; /* Change la couleur du texte au survol */
+    cursor: pointer;
+}
+
+/* Responsivité */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem; /* Réduction de la taille du titre sur les petits écrans */
+    }
+
+    .accroche {
+        font-size: 1rem; /* Réduction de la taille de l'accroche */
+    }
+
+    .options {
+        flex-direction: column;
+        gap: 20px;
+    }
+}

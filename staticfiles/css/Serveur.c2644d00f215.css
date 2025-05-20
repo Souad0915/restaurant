@@ -1,0 +1,120 @@
+/* Style général */
+body {
+    font-family: Arial, sans-serif;
+}
+
+.main-content {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+}
+
+h2 {
+    text-align: center;
+    color: #554704;
+    text-decoration: underline;
+}
+
+/* Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  
+}
+
+
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    
+}
+
+/* En-têtes de table */
+th {
+    background-color: #554704; /* Couleur de fond orange pour l'en-tête */
+    color: white;  /* Texte en blanc */
+}
+
+/* Boutons d'action */
+.action-btn {
+    padding: 5px 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    margin: 5px;
+}
+
+.serve-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.cancel-btn {
+    background-color: #f44336;
+    color: white;
+}
+
+/* Statuts */
+.status {
+    font-weight: bold;
+}
+
+.approved {
+    color: green;
+}
+
+.canceled {
+    color: red;
+}
+
+.pending {
+    color: orange;
+}
+
+/* État de la commande */
+.order-state {
+    font-weight: bold;
+    color: #333;
+}
+/* Style du bouton contenant */
+.back-button {
+    position: fixed; /* Fixe le bouton en bas de la page */
+    left: 50%; /* Centrer le bouton horizontalement */
+    bottom: 20px; /* Espacement du bas de la page */
+    transform: translateX(-50%); /* Ajuste le bouton pour le centrer parfaitement */
+    z-index: 1000; /* Assure que le bouton soit au-dessus du reste du contenu */
+}
+
+/* Style du lien */
+.back-button a {
+    text-decoration: none; /* Enlever le soulignement du lien */
+}
+
+/* Style du bouton */
+.back-button button {
+    background-color: #554704; /* Couleur de fond verte */
+    color: white; /* Texte blanc */
+    border: none; /* Retirer la bordure par défaut */
+    padding: 10px 20px; /* Espacement interne (hauteur, largeur) */
+    font-size: 16px; /* Taille de la police */
+    cursor: pointer; /* Curseur en main pour montrer que c'est cliquable */
+    border-radius: 5px; /* Bordure arrondie */
+    transition: background-color 0.3s ease; /* Transition de la couleur de fond */
+}
+
+/* Effet au survol du bouton */
+.back-button button:hover {
+    background-color: #bea31f; /* Changer la couleur de fond au survol */
+}
+
+/* Effet lorsque le bouton est cliqué */
+.back-button button:active {
+    background-color: #d6bb34; /* Changer la couleur lors du clic */
+}
+
