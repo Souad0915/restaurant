@@ -1162,13 +1162,13 @@ def update_commande_status(request, commande_id, new_status):
     """
 
     # Version SMS
-    sms_message = (
-        f"Commande #{commande.id} - Statut: {new_status}\n"
-        f"Plat principal: {commande.menu_name} x{commande.quantity}\n"
-        f"{'Plat supplémentaire: ' + commande.other_dish + ' x' + str(commande.other_dish_quantity) + '\n' if commande.other_dish else ''}"
-        f"Total: {commande.menu_total_price:.2f} fr\n"
-        f"{'Merci pour votre confiance!' if new_status == 'Approuvé' else 'A bientôt!'}"
-    )
+    # sms_message = (
+    #     f"Commande #{commande.id} - Statut: {new_status}\n"
+    #     f"Plat principal: {commande.menu_name} x{commande.quantity}\n"
+    #     f"{'Plat supplémentaire: ' + commande.other_dish + ' x' + str(commande.other_dish_quantity) + '\n' if commande.other_dish else ''}"
+    #     f"Total: {commande.menu_total_price:.2f} fr\n"
+    #     f"{'Merci pour votre confiance!' if new_status == 'Approuvé' else 'A bientôt!'}"
+    # )
 
     # Envoi de l'email
     send_mail(
