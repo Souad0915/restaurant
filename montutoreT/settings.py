@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 import pymysql
 pymysql.install_as_MySQLdb()
-
+import dotenv
+dotenv.load_dotenv()
 
 # Installation de MySQLdb via pymysql
 pymysql.install_as_MySQLdb() 
@@ -95,6 +96,7 @@ import os
 import dj_database_url
 
 # Production
+
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 ALLOWED_HOSTS = ['restaurant-10-dxaw.onrender.com', 'localhost', '127.0.0.1']
 
@@ -108,6 +110,10 @@ DATABASES = {
     )
 }
 
+
+SECRET_KEY = os.getenv('SECRET_KEY')
+DEBUG = os.getenv('DEBUG') == 'True'
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
 # Static files
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
