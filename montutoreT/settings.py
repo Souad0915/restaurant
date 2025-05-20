@@ -17,8 +17,18 @@ dotenv.load_dotenv()
 # Installation de MySQLdb via pymysql
 pymysql.install_as_MySQLdb() 
 
-
+import os
 from pathlib import Path
+
+from dotenv import load_dotenv
+
+
+# Charger automatiquement les variables depuis un fichier .env (utile en dev)
+BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(os.path.join(BASE_DIR, '.env'))
+
+
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -112,8 +122,10 @@ DATABASES = {
 
 
 SECRET_KEY = os.getenv('SECRET_KEY')
+# DEBUG = os.getenv('DEBUG') == 'True'
+# ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
 DEBUG = os.getenv('DEBUG') == 'True'
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 # Static files
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
