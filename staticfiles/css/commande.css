@@ -12,7 +12,7 @@ body {
 
 .sidebar {
     width: 200px;
-    background-color: #8a760f;
+    background-color:#554704;
     color: rgb(255, 255, 255);
     padding: 20px;
     display: flex;
@@ -51,14 +51,14 @@ a {
     font-size: 18px;
     
     padding: 10px;
-    background-color: #8a760f;
+    background-color:#554704;
     font-weight: bold;
     
     
 }
 
 a:hover {
-    background-color: #8a760f;
+    background-color:#554704;
 }
 
 .main-content {
@@ -73,7 +73,7 @@ a:hover {
     font-weight: bold;
     text-align: left;
     margin-bottom: 20px;
-    color: #8a760f;
+    color: #554704;
     text-decoration: underline;
 }
 
@@ -93,7 +93,7 @@ a:hover {
 }
 
 .commandes-table th {
-    background-color: #8a760f; /* Couleur d'en-tête */
+    background-color: #554704; /* Couleur d'en-tête */
     color: white;
     font-weight: bold;
 }

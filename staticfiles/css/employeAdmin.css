@@ -12,7 +12,7 @@ body {
 /* Sidebar styles */
 .sidebar {
     width: 220px; /* Réduit la largeur de la sidebar */
-    background-color: #8a760f;
+    background-color: #554704;
     color: white;
     height: 100vh;
     padding: 15px; /* Réduit le padding pour la sidebar */
@@ -41,7 +41,7 @@ ul li a {
 }
 
 ul li:hover {
-    background-color: #6e6019;
+    background-color: #554704;
 }
 
 /* Main content (container principal) */
@@ -76,7 +76,7 @@ th, td {
 }
 
 th {
-    background-color: #8a760f;
+    background-color: #554704;
     color: white;
     font-size: 14px; /* Réduit la taille de la police des en-têtes */
 }

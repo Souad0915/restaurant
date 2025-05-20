@@ -13,7 +13,7 @@ body {
 
 .sidebar {
     width: 200px;
-    background-color: #8a760f;
+    background-color: #554704;
     color: rgb(255, 255, 255);
     padding: 20px;
     display: flex;
@@ -52,14 +52,14 @@ a {
     font-size: 18px;
     
     padding: 10px;
-    background-color: #8a760f;
+    background-color:#554704;
     font-weight: bold;
     
     
 }
 
 a:hover {
-    background-color: #8a760f;
+    background-color:#554704;
 }
 
 /* Le conteneur principal pour centrer le contenu */
@@ -74,7 +74,7 @@ a:hover {
 .accueil h1 {
     font-size: 40px;  /* Taille du texte */
     text-align: center;
-    color: #8a760f;
+    color: #554704;
     font-family: 'Arial', sans-serif;  /* Police par défaut */
     white-space: nowrap;  /* Empêcher le texte de se diviser sur plusieurs lignes */
     overflow: hidden; /* Cacher le texte en dehors de l'élément */

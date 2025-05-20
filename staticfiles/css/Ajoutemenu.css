@@ -29,18 +29,17 @@ body {
 }
 
 /* Style des champs de formulaire */
-.form-container input, .form-container textarea, .form-container button {
+.form-container input,
+.form-container textarea,
+.form-container select {
     width: 100%;
     padding: 12px;
     margin: 12px 0;
     border: 1px solid #988319;
     font-size: 14px;
     border-radius: 8px;
-}
-
-.form-container input:focus, .form-container textarea:focus {
-    border-color: #28a745;
-    outline: none;
+    box-sizing: border-box; /* Important pour que padding et border n'affectent pas la largeur totale */
+    height: auto; /* Réinitialise la hauteur spécifique du select */
 }
 
 /* Style spécifique pour le champ de texte */
@@ -56,13 +55,25 @@ body {
     border: none;
     cursor: pointer;
     font-size: 15px;
-    width: 130px;
+    width: 100%; /* Prend toute la largeur pour s'aligner avec les autres champs */
     text-align: center;
     border-radius: 10px;
     transition: background-color 0.3s ease;
     margin-top: 20px;
+    padding: 12px; /* Réapplique le padding pour le bouton */
+    box-sizing: border-box; /* Assure que le padding est inclus dans la largeur */
+    height: auto; /* Réinitialise toute hauteur spécifique */
 }
 
 .form-container button:hover {
     background-color: #a58f21;
+}
+
+/* Style pour le label de la catégorie pour un meilleur alignement (optionnel) */
+.form-container label[for="dishCategory"] {
+    display: block; /* Met le label sur une ligne séparée */
+    margin-bottom: 5px;
+    text-align: left; /* Aligne le texte du label à gauche */
+    color: #333; /* Couleur du texte du label */
+    font-size: 14px;
 }

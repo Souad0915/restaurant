@@ -1,64 +1,75 @@
 /* Global styles */
+/* Modification pour la barre de navigation horizontale */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    display: flex;
+    /* display: flex; /* Supprime le flex pour que le body s'écoule normalement */
     background-color: #f4f4f4;
-    height: 100vh;
-    overflow: hidden;
+    min-height: 100vh; /* Utilise min-height pour s'assurer que le body couvre au moins la hauteur de l'écran */
+    overflow-x: hidden; /* Empêche le défilement horizontal inutile */
 }
 
-/* Sidebar styles */
 .sidebar {
-    width: 220px; /* Réduit la largeur de la sidebar */
-    background-color: #715f03;
+    width: 100%; /* La barre prend toute la largeur */
+    background-color: #554704;
     color: white;
-    height: 100vh;
-    padding: 15px; /* Réduit le padding pour la sidebar */
-    position: fixed; /* Sidebar reste fixe */
+    height: auto; /* La hauteur s'ajuste au contenu */
+    padding: 10px 0; /* Réduit le padding vertical, ajoute un peu de padding horizontal si nécessaire */
+    position: fixed; /* Garde la barre en haut lors du défilement */
     top: 0;
     left: 0;
+    z-index: 100; /* Assure-toi qu'elle est au-dessus du contenu principal */
+    display: flex; /* Pour aligner les éléments horizontalement */
+    justify-content: center; /* Centre les éléments du menu */
+    align-items: center; /* Centre verticalement les éléments du menu */
 }
 
-/* Menu de navigation */
-ul {
+.sidebar .profile {
+    display: none; /* Cache la section du profil (l'image et le nom) pour une barre horizontale */
+}
+
+.sidebar ul {
     list-style: none;
     padding: 0;
+    margin: 0; /* Supprime les marges par défaut de la liste */
+    display: flex; /* Aligne les éléments de la liste horizontalement */
 }
 
-ul li {
-    padding: 15px;
+.sidebar ul li {
+    padding: 10px 15px; /* Réduit le padding vertical, ajuste le padding horizontal */
     text-align: center;
-    transition: background-color 0.3s ease;
 }
 
-ul li a {
+.sidebar ul li a {
     text-decoration: none;
     color: white;
-    font-size: 18px;
+    font-size: 16px; /* Ajuste la taille de la police si nécessaire */
     display: block;
 }
 
-ul li:hover {
-    background-color:  #715f03;
+.sidebar ul li:hover {
+    background-color: #6d5b1a; /* Couleur de fond au survol, légèrement plus claire */
 }
 
-/* Main content (fixé à droite) */
+/* Ajustement du contenu principal pour ne pas être caché par la barre de navigation fixe */
 .main-content {
-    margin-left: 240px;
+    margin-top: 60px; /* Ajoute une marge en haut pour laisser de l'espace pour la barre de navigation (ajuste cette valeur si la hauteur de ta barre change) */
+    margin-left: 0; /* Supprime la marge à gauche */
     width: 100%;
-    padding: 0px;
+    padding: 15px; /* Remet le padding pour le contenu principal */
     background-color: #fff;
-    height: 100vh;
-    overflow: auto;
+    min-height: calc(100vh - 60px); /* Ajuste la hauteur minimum du contenu principal */
+    overflow-y: auto; /* Permet le défilement vertical du contenu */
 }
+
+/* Tu peux conserver ou ajuster les styles des graphiques et autres éléments selon tes besoins */
 
 /* Container pour tableau de bord et graphiques */
 .dashboard-container {
     padding: 15px;
     border-radius: 8px;
-    box-shadow: 0 0 10px  #715f03;
+    box-shadow: 0 0 10px  #554704;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -83,11 +94,11 @@ ul li:hover {
 
 /* Style pour chaque élément du tableau de bord */
 .dashboard-items .item {
-    background-color: #715f03;
+    background-color: #554704;
     padding: 15px; /* Réduit le padding des items */
     border-radius: 8px;
     text-align: center;
-    box-shadow: 0 0 8px  #715f03;
+    box-shadow: 0 0 8px  #554704;
     height: 50px; /* Réduit encore la hauteur de chaque rectangle */
     width: 400px;
     display: flex;

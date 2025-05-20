@@ -5,14 +5,14 @@ body {
     padding: 0;
     display: flex;
     background-color: #f4f4f4;
-    height: 100vh;
-    overflow: hidden;
+    height: calc(100vh - 40px);
+    overflow: auto;
 }
 
 /* Sidebar styles */
 .sidebar {
     width: 220px;
-    background-color: #8a760f;
+    background-color: #554704;
     color: white;
     height: 100vh;
     padding: 15px;
@@ -40,7 +40,7 @@ ul li a {
 }
 
 ul li:hover {
-    background-color: #71631e;
+    background-color: #554704;
 }
 
 .main-content {
@@ -65,7 +65,7 @@ ul li:hover {
 .form-container h2 {
     font-size: 22px;
     margin-bottom: 15px;
-    color: #9f8a1d;
+    color: #554704;
     text-align: center;
 }
 
@@ -73,7 +73,7 @@ ul li:hover {
     width: 100%;
     padding: 10px;
     margin: 8px 0;
-    border: 1px solid #988319;
+    border: 1px solid #554704;
     font-size: 14px;
 }
 
@@ -83,7 +83,7 @@ ul li:hover {
 }
 
 .form-container button {
-    background-color: #8a760f;
+    background-color: #554704;
     color: white;
     border: none;
     cursor: pointer;
@@ -95,7 +95,7 @@ ul li:hover {
 }
 
 .form-container button:hover {
-    background-color: #a58f21;
+    background-color: #554704;
 }
 
 /* Table styles */
@@ -103,32 +103,39 @@ ul li:hover {
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
+    background-color: #fff; /* Ajout de la couleur de fond du tableau */
+    border-radius: 8px; /* Ajout de bordures arrondies */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ajout d'une légère ombre */
+    overflow: hidden;  /*Important pour que les bordures arrondies fonctionnent*/
 }
 
 .menu-table th, .menu-table td {
-    padding: 10px;
+    padding: 12px 10px; /* Réduction du padding vertical et horizontal */
     text-align: center;
-    border: 1px solid #ddd;
+    border-bottom: 1px solid #ddd; /* Bordures horizontales plus claires */
+    font-size: 14px; /* Réduction de la taille de la police */
 }
 
 .menu-table th {
-    background-color: #8a760f;
+    background-color: #554704;
     color: white;
+    font-weight: bold; /* Maintien du gras pour les en-têtes */
 }
 
 .menu-table td {
     background-color: #f9f9f9;
-    height: 10px;
+    height: auto; /* Suppression de la hauteur fixe, s'adapte au contenu */
 }
 
 .menu-table td button {
     background-color: #dc3545;
     color: white;
     border: none;
-    padding: 8px 16px;
+    padding: 6px 12px; /* Réduction du padding des boutons */
     cursor: pointer;
     border-radius: 5px;
     transition: background-color 0.3s ease;
+    font-size: 12px; /* Réduction de la taille de la police des boutons */
 }
 
 .menu-table td button.edit {
@@ -143,6 +150,15 @@ ul li:hover {
     background-color: #218838;
 }
 
+.menu-table img {
+    max-width: 80px; /* Taille maximale des images, ajustable */
+    height: auto;
+    border-radius: 4px;
+    display: block; /* Supprime l'espace sous l'image */
+    margin: 0 auto; /* Centre les images dans leur cellule */
+}
+
+
 /* Image en bas à droite */
 .image-bottom-right {
     position: fixed;
@@ -150,4 +166,3 @@ ul li:hover {
     bottom: 10px;
     z-index: 10;
 }
-

@@ -110,3 +110,17 @@ input[type="submit"]:hover {
 .signup-link a:hover {
     text-decoration: underline;
 }
+
+
+.alert.alert-success {
+    background-color: #4CAF50 !important;
+    color: rgb(17, 110, 17) !important;
+    font-size: 1.2rem !important;
+    font-weight: bold !important;
+    padding: 15px !important;
+    display: block !important;
+    text-align: center !important;
+    border-radius: 5px !important;
+    margin: 20px 0 !important;
+}
+       
