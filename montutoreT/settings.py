@@ -38,7 +38,7 @@ SECRET_KEY = 'django-insecure-$f02f4z9s)&cqzv#j6dz$=zr^eut5&^jg@ocwjjo86t*jc^o&&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -96,7 +96,7 @@ import dj_database_url
 
 # Production
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
-ALLOWED_HOSTS = ['votre-app.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['montutoreT.onrender.com', 'localhost', '127.0.0.1']
 
 # Database
 DATABASES = {
